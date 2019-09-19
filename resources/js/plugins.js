@@ -1,3 +1,17 @@
+/*
+ * Place the CSRF token as a header on all pages for access in AJAX requests
+ */
+$.ajaxSetup({
+    beforeSend: function(xhr, type) {
+        if (!type.crossDomain) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        }
+    },
+    complete: function(response, status, xhr){
+        addDeleteForms();
+    }
+});
+
 /**
  * Allows you to add data-method="METHOD to links to automatically inject a form
  * with the method on click
@@ -48,9 +62,9 @@ $(function () {
 
         const form = this;
         const link = $('a[data-method="delete"]');
-        const cancel = (link.attr('data-trans-button-cancel')) ? link.attr('data-trans-button-cancel') : 'Cancel';
-        const confirm = (link.attr('data-trans-button-confirm')) ? link.attr('data-trans-button-confirm') : 'Yes, delete';
-        const title = (link.attr('data-trans-title')) ? link.attr('data-trans-title') : 'Are you sure you want to delete this item?';
+        const cancel = (link.attr('data-trans-button-cancel')) ? link.attr('data-trans-button-cancel') : 'Cancelar';
+        const confirm = (link.attr('data-trans-button-confirm')) ? link.attr('data-trans-button-confirm') : 'Eliminar';
+        const title = (link.attr('data-trans-title')) ? link.attr('data-trans-title') : 'Está seguro que desea eliminarlo?';
 
         Swal.fire({
             title: title,
@@ -68,9 +82,9 @@ $(function () {
         e.preventDefault();
 
         const link = $(this);
-        const title = (link.attr('data-trans-title')) ? link.attr('data-trans-title') : 'Are you sure you want to do this?';
-        const cancel = (link.attr('data-trans-button-cancel')) ? link.attr('data-trans-button-cancel') : 'Cancel';
-        const confirm = (link.attr('data-trans-button-confirm')) ? link.attr('data-trans-button-confirm') : 'Continue';
+        const title = (link.attr('data-trans-title')) ? link.attr('data-trans-title') : 'Está seguro que desea hacer esto?';
+        const cancel = (link.attr('data-trans-button-cancel')) ? link.attr('data-trans-button-cancel') : 'Cancelar';
+        const confirm = (link.attr('data-trans-button-confirm')) ? link.attr('data-trans-button-confirm') : 'Continuar';
 
         Swal.fire({
             title: title,
@@ -83,5 +97,49 @@ $(function () {
         });
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
+    // $('[data-toggle="tooltip"]').tooltip();
+    // Change Tab on load
+    let hash = window.location.hash;
+    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+    $('.nav-tabs li > a').on('click', function (e) {
+        $(this).tab('show');
+        history.pushState(null,null, this.hash);
+    });
+
+    $('table').on('draw.dt', function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover"
+        });
+        KTApp.initTooltips();
+    });
+
+    $('.select2').select2({
+        language: {
+            noResults: function() {
+                return 'Lo sentimos, no hay resultados!';
+            }
+        },
+        width: '100%',
+        id: '-1',
+        placeholder: function(){
+            $(this).data('placeholder');
+        }
+    });
 });
+
+let initDesktopTooltips = function() {
+    if (KTUtil.isInResponsiveRange('desktop')) {
+        $('[data-toggle="kt-tooltip-desktop"]').each(function() {
+            KTApp.initTooltip($(this));
+        });
+    } else {
+        $('[data-toggle="kt-tooltip-desktop"]').each(function() {
+            $(this).tooltip('dispose');
+        });
+    }
+};
+
+initDesktopTooltips();
+KTUtil.addResizeHandler(initDesktopTooltips);

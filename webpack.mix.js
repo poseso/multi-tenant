@@ -12,10 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.setPublicPath('public')
-    .setResourceRoot('../') // Turns assets paths in css relative to css file
-    // .options({
-    //     processCssUrls: false,
-    // })
+    .setResourceRoot('../') // turns assets paths in css relative to css file
     .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
     // .sass('resources/sass/backend/demo1.scss', 'css/demo1.css')
     // .sass('resources/sass/backend/demo2.scss', 'css/demo2.css')
@@ -70,7 +67,7 @@ mix.setPublicPath('public')
 if (mix.inProduction()) {
     mix.version()
         .options({
-            // Optimize JS minification process
+            // optimize js minification process
             terser: {
                 cache: true,
                 parallel: true,
@@ -79,7 +76,5 @@ if (mix.inProduction()) {
         });
 } else {
     // Uses inline source-maps on development
-    mix.webpackConfig({
-        devtool: 'inline-source-map'
-    });
+    mix.webpackConfig({ devtool: 'inline-source-map' });
 }

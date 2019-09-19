@@ -1,0 +1,21 @@
+// Metronic Core Files
+import '../../../resources/js/backend/theme/core/app';
+import '../../../resources/js/backend/theme/core/util';
+import '../../../resources/js/backend/theme/core/base/datatable/core.datatable';
+import '../../../resources/js/backend/theme/core/base/datatable/datatable.checkbox';
+import '../../../resources/js/backend/theme/core/base/datatable/datatable.rtl';
+import '../../../resources/js/backend/theme/core/base/avatar';
+import '../../../resources/js/backend/theme/core/base/dialog';
+import '../../../resources/js/backend/theme/core/base/header';
+import '../../../resources/js/backend/theme/core/base/menu';
+import '../../../resources/js/backend/theme/core/base/offcanvas';
+import '../../../resources/js/backend/theme/core/base/portlet';
+import '../../../resources/js/backend/theme/core/base/scrolltop';
+import '../../../resources/js/backend/theme/core/base/toggle';
+import '../../../resources/js/backend/theme/core/base/wizard';
+import '../../../resources/js/backend/theme/core/layout/chat';
+import '../../../resources/js/backend/theme/core/layout/demo-panel';
+import '../../../resources/js/backend/theme/core/layout/offcanvas-panel';
+import '../../../resources/js/backend/theme/core/layout/quick-panel';
+import '../../../resources/js/backend/theme/core/layout/quick-search';
+import '../../../resources/js/backend/theme/demos/demo12/layout';

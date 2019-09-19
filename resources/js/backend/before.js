@@ -4,7 +4,5 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// Loaded before CoreUI app.js
-import '../bootstrap';
-import 'pace';
+// Loaded before Metronic app.js
 import '../plugins';

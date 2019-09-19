@@ -1,13 +1,11 @@
+// Frontend Styles
 @import "../global";
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Metronic theme config
+@import '../backend/theme/config';
 
-// Bootstrap Overrides
-@import 'variables';
+// Metronic Demo 1
+@import '../backend/theme/demos/demo1/style';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-// Pages
-@import 'pages/dashboard';
+// Metronic Login 3 style
+@import '../backend/theme/pages/general/login/login-3';

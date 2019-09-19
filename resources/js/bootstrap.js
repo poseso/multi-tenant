@@ -2,8 +2,7 @@
  * This bootstrap file is used for both frontend and backend
  */
 
-import _ from 'lodash'
-import axios from 'axios'
+import _ from 'lodash';
 import Swal from 'sweetalert2';
 import $ from 'jquery';
 import 'popper.js'; // Required for BS4

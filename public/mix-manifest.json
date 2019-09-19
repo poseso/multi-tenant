@@ -1,1 +1,10 @@
-{}
+{
+    "/js/demo12.js": "/js/demo12.js",
+    "/js/frontend.js": "/js/frontend.js",
+    "/css/frontend.css": "/css/frontend.css",
+    "/css/demo12.css": "/css/demo12.css",
+    "/js/manifest.js": "/js/manifest.js",
+    "/js/vendor.js": "/js/vendor.js",
+    "/fonts/fonts.css": "/fonts/fonts.css",
+    "/css/datatables.bundle.css": "/css/datatables.bundle.css"
+}
