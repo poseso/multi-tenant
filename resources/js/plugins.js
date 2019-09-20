@@ -29,7 +29,7 @@ function addDeleteForms() {
                 "<input type='hidden' name='_method' value='" + $(this).attr('data-method') + "'>\n" +
                 "<input type='hidden' name='_token' value='" + $('meta[name="csrf-token"]').attr('content') + "'>\n" +
                 '</form>\n';
-        } else { return '' }
+        } else { return ''; }
     })
         .attr('href', '#')
         .attr('style', 'cursor:pointer;')
