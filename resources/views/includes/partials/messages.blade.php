@@ -1,5 +1,5 @@
 @if($errors->any())
-    @if(!\Request::is('settings/*'))
+    @if(!\Request::is('admin/settings/*'))
         @component('components.alerts.default')
         @endcomponent
     @endif
@@ -16,7 +16,7 @@
         ['type' => 'info', 'icon' => 'fas fa-info-circle'])
     @endcomponent
 @elseif(session()->get('flash_danger'))
-    @if(!\Request::is('settings/*'))
+    @if(!\Request::is('admin/settings/*'))
         @component('components.alerts.alerts',
             ['type' => 'danger', 'icon' => 'fas fa-times'])
         @endcomponent
