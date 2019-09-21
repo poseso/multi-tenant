@@ -1,11 +1,24 @@
-<footer class="app-footer">
-    <div>
-        <strong>@lang('labels.general.copyright') &copy; {{ date('Y') }}
-            <a href="http://laravel-boilerplate.com">
-                @lang('strings.backend.general.boilerplate_link')
-            </a>
-        </strong> @lang('strings.backend.general.all_rights_reserved')
+<!-- begin:: Footer -->
+<div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+    <div class="kt-footer__copyright">
+        {{ __('Copyright') }} &copy; {{ date('Y') }}
+        <a href="http://modocreativo.net" target="_blank" class="kt-link">
+            &nbsp;Modo Creativo
+        </a>
     </div>
 
-    <div class="ml-auto">Theme by <a href="http://coreui.io">CoreUI</a></div>
-</footer>
+    <div class="kt-footer__menu">
+        <a href="http://modocreativo.net" target="_blank" class="kt-footer__menu-link kt-link">
+            About
+        </a>
+
+        <a href="http://modocreativo.net" target="_blank" class="kt-footer__menu-link kt-link">
+            Team
+        </a>
+
+        <a href="{{ route('frontend.contact') }}" target="_blank" class="kt-footer__menu-link kt-link">
+            {{ __('Contacto') }}
+        </a>
+    </div>
+</div>
+<!-- end:: Footer -->

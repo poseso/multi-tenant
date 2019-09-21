@@ -1,90 +1,172 @@
-<div class="sidebar">
-    <nav class="sidebar-nav">
-        <ul class="nav">
-            <li class="nav-title">
-                @lang('menus.backend.sidebar.general')
+<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+    <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1">
+        <ul class="kt-menu__nav" style="padding:0 !important;">
+            <li class="kt-menu__section kt-menu__section--first">
+                <h4 class="kt-menu__section-text">
+                    {{ __('Menú Principal') }}
+                </h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin/dashboard'))
-                }}" href="{{ route('admin.dashboard') }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    @lang('menus.backend.sidebar.dashboard')
+
+            <li class="kt-menu__item @if(active_class(Route::is('admin.dashboard'))) kt-menu__item--active @endif" aria-haspopup="true">
+                <a href="{{ route('admin.dashboard') }}" class="kt-menu__link">
+                    <i class="kt-menu__link-icon flaticon2-architecture-and-city"></i>
+                    <span class="kt-menu__link-text">
+                        {{ __('Tablero de Control') }}
+                    </span>
                 </a>
             </li>
 
-            @if ($logged_in_user->isAdmin())
-                <li class="nav-title">
-                    @lang('menus.backend.sidebar.system')
-                </li>
+            <li class="kt-menu__section kt-menu__section--first">
+                <h4 class="kt-menu__section-text">
+                    {{ __('Menú de Seguridad') }}
+                </h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+            </li>
 
-                <li class="nav-item nav-dropdown {{
-                    active_class(Route::is('admin/auth*'), 'open')
-                }}">
-                    <a class="nav-link nav-dropdown-toggle {{
-                        active_class(Route::is('admin/auth*'))
-                    }}" href="#">
-                        <i class="nav-icon far fa-user"></i>
-                        @lang('menus.backend.access.title')
+            <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin.auth.*'), 'kt-menu__item--open kt-menu__item--active') }}"
+                aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                <a href="javascript:;" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/auth*')) }}">
+                    <i class="kt-menu__link-icon flaticon-users-1"></i>
+                    <span class="kt-menu__link-text">
+                            {{ __('Usuarios') }}
+                        </span>
 
-                        @if ($pending_approval > 0)
-                            <span class="badge badge-danger">{{ $pending_approval }}</span>
-                        @endif
-                    </a>
+                    @if ($pending_approval > 0)
+                        <span class="kt-menu__link-badge">
+                                <span class="kt-badge kt-badge--warning kt-badge--md">
+                                    {{ $pending_approval }}
+                                </span>
+                            </span>
+                    @endif
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
 
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                                active_class(Route::is('admin/auth/user*'))
-                            }}" href="{{ route('admin.auth.user.index') }}">
-                                @lang('labels.backend.access.users.management')
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.user.index'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.user.index') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Listado de Usuarios') }}
+                                </span>
 
                                 @if ($pending_approval > 0)
-                                    <span class="badge badge-danger">{{ $pending_approval }}</span>
+                                    <span class="kt-menu__link-badge">
+                                        <span class="kt-badge kt-badge--warning">
+                                            {{ $pending_approval }}
+                                        </span>
+                                    </span>
                                 @endif
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                                active_class(Route::is('admin/auth/role*'))
-                            }}" href="{{ route('admin.auth.role.index') }}">
-                                @lang('labels.backend.access.roles.management')
+
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.user.create'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.user.create') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Nuevo Usuario') }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.user.deactivated'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.user.deactivated') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Usuarios Desactivados') }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.user.deleted'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.user.deleted') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Usuarios Eliminados') }}
+                                </span>
                             </a>
                         </li>
                     </ul>
-                </li>
+                </div>
+            </li>
 
-                <li class="divider"></li>
+            <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin/log-viewer*'), 'kt-menu__item--open kt-menu__item--active') }}"
+                aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                <a href="javascript:" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/log-viewer*')) }}">
+                    <i class="kt-menu__link-icon flaticon-lock"></i>
+                    <span class="kt-menu__link-text">
+                        {{ __('Logs de Errores') }}
+                    </span>
 
-                <li class="nav-item nav-dropdown {{
-                    active_class(Route::is('admin/log-viewer*'), 'open')
-                }}">
-                        <a class="nav-link nav-dropdown-toggle {{
-                            active_class(Route::is('admin/log-viewer*'))
-                        }}" href="#">
-                        <i class="nav-icon fas fa-list"></i> @lang('menus.backend.log-viewer.main')
-                    </a>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
 
-                    <ul class="nav-dropdown-items">
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                            active_class(Route::is('admin/log-viewer'))
-                        }}" href="{{ route('log-viewer::dashboard') }}">
-                                @lang('menus.backend.log-viewer.dashboard')
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item @if(active_class(Route::is('admin/log-viewer'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('log-viewer::dashboard') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Principal') }}
+                                </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                            active_class(Route::is('admin/log-viewer/logs*'))
-                        }}" href="{{ route('log-viewer::logs.list') }}">
-                                @lang('menus.backend.log-viewer.logs')
+
+                        <li class="kt-menu__item @if(active_class(Route::is('admin/log-viewer/logs*'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('log-viewer::logs.list') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Logs') }}
+                                </span>
                             </a>
                         </li>
                     </ul>
-                </li>
-            @endif
+                </div>
+            </li>
+
+            <li class="kt-menu__section kt-menu__section--first">
+                <h4 class="kt-menu__section-text">
+                    {{ __('Configuraciones') }}
+                </h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+            </li>
+
+            <li class="kt-menu__section kt-menu__section--first">
+                <h4 class="kt-menu__section-text">
+                    {{ __('Reportes') }}
+                </h4>
+                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+            </li>
+
+{{--            <li class="kt-menu__item @if(active_class(Route::is('admin/colores*'))) kt-menu__item--active @endif" aria-haspopup="true">--}}
+{{--                <a href="{{ route('admin.colores') }}" class="kt-menu__link">--}}
+{{--                    <i class="kt-menu__link-icon flaticon-graphic"></i>--}}
+{{--                    <span class="kt-menu__link-text">--}}
+{{--                        {{ __('Paleta de Colores') }}--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
         </ul>
-    </nav>
-
-    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-</div><!--sidebar-->
+    </div>
+</div>
