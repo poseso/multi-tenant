@@ -1,0 +1,17 @@
+<?php
+
+namespace {{namespace}};
+
+/**
+ * Class {{class}}
+ */
+trait {{class}}
+{
+    /**
+     * @return mixed
+     */
+    public function {{variable}}s()
+    {
+        return $this->belongsTo(Modelo::class, 'campo');
+    }
+}

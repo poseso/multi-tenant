@@ -1,0 +1,21 @@
+<?php
+
+namespace {{namespace}};
+
+/**
+ * Class {{class}}
+ */
+trait {{class}}
+{
+     /**
+     * @return string
+     */
+    public function getStatusLabelAttribute()
+    {
+        if ($this->isActivo()) {
+            return "<span class='btn badge badge-success p-2'>".__('Activo').'</span>';
+        }
+
+        return "<span class='btn badge badge-danger p-2'>".__('Inactivo').'</span>';
+    }
+}

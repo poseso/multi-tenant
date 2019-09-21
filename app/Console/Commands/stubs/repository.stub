@@ -1,0 +1,164 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Support\Facades\DB;
+use App\Models\{{model}}\{{model}};
+use App\Repositories\BaseRepository;
+use App\Exceptions\GeneralException;
+
+class {{class}} extends BaseRepository
+{
+	 /**
+     * Associated {{class}} Model.
+     */
+    public function model()
+    {
+        return {{model}}::class;
+    }
+
+     /**
+     * @return mixed
+     */
+    public function getForDataTable()
+    {
+    	//
+    }
+
+{{all}}
+    /**
+    * Get all instance of {{model}}.
+    * @param string $orderBy
+    * @param string $sort
+    * @return mixed
+    */
+    public function getAll($orderBy = 'id', $sort = 'asc')
+    {
+        return $this->model
+            ->orderBy($orderBy, $sort)
+            ->get();
+    }
+{{/all}}
+{{count}}
+    /**
+     * @return mixed
+     */
+    public function getCount()
+    {
+        return $this->model
+            ->count();
+    }
+{{/count}}
+{{paginated}}
+     /**
+     * @param bool $trashed
+     * @param int $perPage
+     * @param string $orderBy
+     * @param string $sort
+     * @return mixed
+     */
+    public function getPaginated($trashed = false, $perPage = 15, $orderBy = 'id', $sort = 'asc')
+    {
+    	$query = $trashed ? $this->model->onlyTrashed() : $this->model;
+
+        return $query->orderBy($orderBy, $sort)->paginate($perPage);
+    }
+{{/paginated}}
+{{create}}
+     /**
+     * Create a new instance of {{model}}.
+     * @param array $data
+     */
+    public function create(array $data) : {{model}}
+    {
+        return DB::transaction(function () use ($data) {
+            ${{variable}} = parent::create([
+                //
+            ]);
+
+            if (${{variable}}) {
+
+                event(new {{variable}}Created(${{variable}}));
+
+                return ${{variable}};
+            }
+
+            throw new GeneralException(__('Hubo un problema al crear el {{variable}}. Intentelo de nuevo.'));
+        });
+    }
+{{/create}}
+{{update}}
+     /**
+     * Update the {{model}} with the given attributes.
+     * @param {{model}}  ${{variable}}
+     * @param array $data
+     *
+     * @return {{model}}
+     */
+    public function update({{model}} ${{variable}}, array $data) : {{model}}
+    {
+        return DB::transaction(function () use (${{variable}}, $data) {
+            if (${{variable}}->update([
+                //
+            ])) {
+                return ${{variable}};
+            }
+
+            throw new GeneralException(__('Hubo un problema al modificar el {{variable}}. Intentelo de nuevo.'));
+        });
+    }
+{{/update}}
+{{delete}}
+     /**
+      * Remove the specified resource from storage.
+     * @param  ${{variable}}
+     * @throws GeneralException
+     * @return boolean|null
+     */
+    public function destroy({{model}} ${{variable}})
+    {
+        if (${{variable}}->delete()) {
+            //event(new {{model}}Deleted(${{variable}}));
+
+            return ${{variable}};
+        }
+
+        throw new GeneralException(__('Hubo un problema al eliminar el {{variable}}. Intentelo de nuevo.'));
+    }
+{{/delete}}
+{{forceDelete}}
+     /**
+     * @param  $id
+     * @throws GeneralException
+     * @return boolean|null
+     */
+    public function forceDelete({{model}} ${{variable}})
+    {
+        if (${{variable}}->forceDelete()) {
+            //event(new {{model}}Destroyed(${{variable}}));
+
+            return ${{variable}};
+        }
+
+        throw new GeneralException(__('Hubo un problema al eliminar el {{variable}}. Intentelo de nuevo.'));
+    }
+{{/forceDelete}}
+{{restore}}
+     /**
+     * @param  $id
+     * @throws GeneralException
+     * @return boolean|null
+     */
+    public function restore({{model}} ${{variable}})
+    {
+        if (${{variable}}->restore()) {
+            //event(new {{model}}Restored(${{variable}}));
+
+            return ${{variable}};
+        }
+
+        throw new GeneralException(__('Hubo un problema al restaurar el {{variable}}. Intentelo de nuevo.'));
+    }
+{{/restore}}
+
+}

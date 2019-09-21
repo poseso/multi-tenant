@@ -1,0 +1,17 @@
+<?php
+
+namespace {{namespace}};
+
+/**
+ * Class {{class}}
+ */
+trait {{class}}
+{
+    /**
+     * @return bool
+     */
+    public function isActivo()
+    {
+        return $this->activo == 1;
+    }
+}
