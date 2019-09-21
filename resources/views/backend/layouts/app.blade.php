@@ -1,6 +1,12 @@
 <!DOCTYPE html>
+<!--
+Producto: Sistema Integrado de Gestión Contable
+Autor: Carlos Sánchez
+Website: http://www.modocreativo.net/
+Contacto: carlos@modocreativo.net
+-->
 @langrtl
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @endlangrtl
