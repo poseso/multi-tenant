@@ -1,71 +1,28 @@
- @if($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @foreach($errors->all() as $error)
-            {!! $error !!}<br/>
-        @endforeach
-    </div>
+@if($errors->any())
+    @if(!\Request::is('settings/*'))
+        @component('components.alerts.default')
+        @endcomponent
+    @endif
 @elseif(session()->get('flash_success'))
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @if(is_array(json_decode(session()->get('flash_success'), true)))
-            {!! implode('', session()->get('flash_success')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_success') !!}
-        @endif
-    </div>
+    @component('components.alerts.alerts',
+        ['type' => 'success', 'icon' => 'fas fa-check'])
+    @endcomponent
 @elseif(session()->get('flash_warning'))
-    <div class="alert alert-warning" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @if(is_array(json_decode(session()->get('flash_warning'), true)))
-            {!! implode('', session()->get('flash_warning')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_warning') !!}
-        @endif
-    </div>
+    @component('components.alerts.alerts',
+        ['type' => 'warning', 'icon' => 'fas fa-exclamation-triangle'])
+    @endcomponent
 @elseif(session()->get('flash_info'))
-    <div class="alert alert-info" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @if(is_array(json_decode(session()->get('flash_info'), true)))
-            {!! implode('', session()->get('flash_info')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_info') !!}
-        @endif
-    </div>
+    @component('components.alerts.alerts',
+        ['type' => 'info', 'icon' => 'fas fa-info-circle'])
+    @endcomponent
 @elseif(session()->get('flash_danger'))
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @if(is_array(json_decode(session()->get('flash_danger'), true)))
-            {!! implode('', session()->get('flash_danger')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_danger') !!}
-        @endif
-    </div>
+    @if(!\Request::is('settings/*'))
+        @component('components.alerts.alerts',
+            ['type' => 'danger', 'icon' => 'fas fa-times'])
+        @endcomponent
+    @endif
 @elseif(session()->get('flash_message'))
-    <div class="alert alert-info" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
-        @if(is_array(json_decode(session()->get('flash_message'), true)))
-            {!! implode('', session()->get('flash_message')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_message') !!}
-        @endif
-    </div>
+    @component('components.alerts.alerts',
+        ['type' => 'message', 'icon' => 'fas fa-check'])
+    @endcomponent
 @endif
