@@ -3,9 +3,13 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Session\TokenMismatchException;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Class Handler.
@@ -56,7 +60,32 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UnauthorizedException) {
             return redirect()
                 ->route(home_route())
-                ->withFlashDanger(__('auth.general_error'));
+                ->withFlashDanger(__('No está autorizado para acceder a esta sección..'));
+        }
+
+        if ($exception instanceof AuthorizationException) {
+            return response(view('errors.403'));
+        }
+
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()
+                ->route('frontend.auth.login')
+                ->withFlashDanger(__('Su sesión ha expirado. Favor iniciar sesión nuevamente.'));
+        }
+
+        if ($exception instanceof HttpException) {
+            $statusCode = $exception->getStatusCode();
+
+            if (view()->exists('errors.'.$statusCode)) {
+                return response(view('errors.'.$statusCode, [
+                    'msg' => $exception->getMessage(),
+                    'code' => $statusCode,
+                ]), $statusCode);
+            }
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            return response(view('errors.404'));
         }
 
         return parent::render($request, $exception);
