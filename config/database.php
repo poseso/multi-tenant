@@ -47,15 +47,15 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
+        'system' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'url' => env('TENANCY_DATABASE_URL'),
+            'host' => env('TENANCY_DB_HOST', '127.0.0.1'),
+            'port' => env('TENANCY_DB_PORT', '3306'),
+            'database' => env('TENANCY_DB_DATABASE', 'forge'),
+            'username' => env('TENANCY_DB_USERNAME', 'forge'),
+            'password' => env('TENANCY_DB_PASSWORD', ''),
+            'unix_socket' => env('TENANCY_DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -65,6 +65,11 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'dump' => [
+                'dump_binary_path' => env('MYSQL_DUMP_PATH', '/Applications/MAMP/Library/bin/'), // only the path, so without 'mysqldump' or 'pg_dump'
+                'use_single_transaction' => env('DUMP_USING_SINGLE_TRANSACTION', true),
+                'timeout' => 60 * 5, // 5 minute timeout
+            ],
         ],
 
         'pgsql' => [
