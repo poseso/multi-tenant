@@ -76,6 +76,6 @@ class UnusedPassword implements Rule
      */
     public function message()
     {
-        return __('auth.password_used');
+        return __('No puede establecer una contraseña que haya usado previamente.');
     }
 }
