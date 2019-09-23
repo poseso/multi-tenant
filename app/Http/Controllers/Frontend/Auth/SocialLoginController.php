@@ -52,7 +52,7 @@ class SocialLoginController extends Controller
 
         // If the provider is not an acceptable third party than kick back
         if (! in_array($provider, $this->socialiteHelper->getAcceptedProviders(), true)) {
-            return redirect()->route(home_route())->withFlashDanger(__('auth.socialite.unacceptable', ['provider' => e($provider)]));
+            return redirect()->route(home_route())->withFlashDanger(__(':provider no es un tipo de autenticación válido.', ['provider' => e($provider)]));
         }
 
         /*
@@ -72,17 +72,17 @@ class SocialLoginController extends Controller
         }
 
         if ($user === null) {
-            return redirect()->route(home_route())->withFlashDanger(__('exceptions.frontend.auth.unknown'));
+            return redirect()->route(home_route())->withFlashDanger(__('Se ha producido un error desconocido.'));
         }
 
         // Check to see if they are active.
         if (! $user->isActive()) {
-            throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
+            throw new GeneralException(__('Su cuenta ha sido desactivada.'));
         }
 
         // Account approval is on
         if ($user->isPending()) {
-            throw new GeneralException(__('exceptions.frontend.auth.confirmation.pending'));
+            throw new GeneralException(__('Su cuenta está actualmente pendiente de aprobación.'));
         }
 
         // User has been successfully created or already exists

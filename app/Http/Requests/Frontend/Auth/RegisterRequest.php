@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
+use LangleyFoxall\LaravelNISTPasswordRules\Rules\BreachedPasswords;
 
 /**
  * Class RegisterRequest.
@@ -32,7 +33,10 @@ class RegisterRequest extends FormRequest
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', Rule::unique('users')],
-            'password' => PasswordRules::register($this->email),
+            'password' => [
+                PasswordRules::register($this->email),
+                (new BreachedPasswords())->setMessage(__('La contraseña ha sido expuesta en una violación de datos.'))
+            ],
             'g-recaptcha-response' => ['required_if:captcha_status,true', 'captcha'],
         ];
     }

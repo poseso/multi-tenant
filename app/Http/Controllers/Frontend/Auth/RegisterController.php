@@ -62,7 +62,7 @@ class RegisterController extends Controller
     {
         abort_unless(config('access.registration'), 404);
 
-        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'email', 'password'));
+        $user = $this->userRepository->create($request->only('first_name', 'last_name', 'username', 'email', 'password'));
 
         // If the user must confirm their email or their account requires approval,
         // create the account but don't log them in.
@@ -71,8 +71,8 @@ class RegisterController extends Controller
 
             return redirect($this->redirectPath())->withFlashSuccess(
                 config('access.users.requires_approval') ?
-                    __('exceptions.frontend.auth.confirmation.created_pending') :
-                    __('exceptions.frontend.auth.confirmation.created_confirm')
+                    __('Su cuenta fue creada con éxito y está pendiente de aprobación. Se enviará un correo electrónico cuando su cuenta sea aprobada.') :
+                    __('Su cuenta ha sido creada. Le hemos enviado un correo electrónico con un enlace de verificación.')
             );
         }
 

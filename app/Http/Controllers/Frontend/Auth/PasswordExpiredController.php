@@ -35,6 +35,6 @@ class PasswordExpiredController extends Controller
         $userRepository->updatePassword($request->only('old_password', 'password'), true);
 
         return redirect()->route('frontend.user.account')
-            ->withFlashSuccess(__('strings.frontend.user.password_updated'));
+            ->withFlashSuccess(__('Contraseña actualizada correctamente.'));
     }
 }

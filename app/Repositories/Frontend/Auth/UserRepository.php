@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Frontend\Auth;
 
+use Carbon\Carbon;
 use App\Models\Auth\User;
 use Illuminate\Http\UploadedFile;
 use App\Models\Auth\SocialAccount;
@@ -228,6 +229,7 @@ class UserRepository extends BaseRepository
 
         if ($user->confirmation_code === $code) {
             $user->confirmed = true;
+            $user->email_verified_at = Carbon::now();
 
             event(new UserConfirmed($user));
 

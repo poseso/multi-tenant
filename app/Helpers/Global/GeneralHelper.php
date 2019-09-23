@@ -35,9 +35,9 @@ if (! function_exists('home_route')) {
                 return 'admin.dashboard';
             }
 
-            return 'frontend.user.dashboard';
+            return view('errors.403');
         }
 
-        return 'frontend.index';
+        return 'frontend.auth.login';
     }
 }

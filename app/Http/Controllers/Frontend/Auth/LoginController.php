@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
+use Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Events\Frontend\Auth\UserLoggedIn;
 use App\Events\Frontend\Auth\UserLoggedOut;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
@@ -24,6 +27,9 @@ class LoginController extends Controller
      */
     public function redirectPath()
     {
+        $user = Auth::user();
+        Settings::scope($user)->set('representante', Auth::user()->fullname);
+
         return route(home_route());
     }
 
@@ -48,18 +54,50 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateLogin(Request $request)
     {
+        $field = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([
+            $field => $request->input('email'),
+        ]);
+
         $request->validate([
-            $this->username() => 'required|string',
+            $field => 'required|string',
             'password' => PasswordRules::login(),
             'g-recaptcha-response' => ['required_if:captcha_status,true', 'captcha'],
         ], [
-            'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
+            'username.required' => __('El campo usuario o correo electrónico es obligatorio.'),
+            'password.required' => __('El campo contraseña es obligatorio.'),
+            'g-recaptcha-response.required_if' => __('El campo :attribute es obligatorio.', ['attribute' => 'captcha']),
+        ]);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        $field = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        return $request->only($field, 'password');
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param Request $request
+     * @throws ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [__('Las credenciales no se han encontrado.')],
         ]);
     }
 
@@ -80,18 +118,25 @@ class LoginController extends Controller
 
             // If the user is pending (account approval is on)
             if ($user->isPending()) {
-                throw new GeneralException(__('exceptions.frontend.auth.confirmation.pending'));
+                throw new GeneralException(__('Su cuenta está actualmente pendiente de aprobación.'));
             }
 
             // Otherwise see if they want to resent the confirmation e-mail
 
-            throw new GeneralException(__('exceptions.frontend.auth.confirmation.resend', ['url' => route('frontend.auth.account.confirm.resend', e($user->{$user->getUuidName()}))]));
+            throw new GeneralException(__(
+                'Su cuenta no ha sido verificada todavía. Por favor, revise su correo, o 
+                <a href="'.route('auth.account.confirm.resend', ':user_uuid').'">
+                    pulse aquí
+                </a> 
+                    para re-enviar el correo de verificación.',
+                ['user_uuid' => e($user->{$user->getUuidName()})]
+            ));
         }
 
         if (! $user->isActive()) {
             auth()->logout();
 
-            throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
+            throw new GeneralException(__('Su cuenta ha sido desactivada.'));
         }
 
         event(new UserLoggedIn($user));
@@ -124,6 +169,6 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
 
-        return redirect()->route('frontend.index');
+        return redirect()->route('frontend.auth.login');
     }
 }

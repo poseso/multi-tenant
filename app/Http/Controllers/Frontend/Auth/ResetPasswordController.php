@@ -56,7 +56,7 @@ class ResetPasswordController extends Controller
         }
 
         return redirect()->route('frontend.auth.password.email')
-            ->withFlashDanger(__('exceptions.frontend.auth.password.reset_problem'));
+            ->withFlashDanger(__('Hubo un problema al restablecer su contraseña. Por favor, vuelva a enviar el correo electrónico de restablecimiento de contraseña.'));
     }
 
     /**
@@ -81,8 +81,8 @@ class ResetPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $response === Password::PASSWORD_RESET
-            ? $this->sendResetResponse($response)
-            : $this->sendResetFailedResponse($request, $response);
+            ? $this->sendResetResponse(__('La contraseña ha sido reestablecida correctamente.'))
+            : $this->sendResetFailedResponse($request, __('Hubo un problema al reestablecer la contraseña.'));
     }
 
     /**
