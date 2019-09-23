@@ -1,11 +1,12 @@
 {
-    "name": "rappasoft/laravel-boilerplate",
+    "name": "poseso/multi-tenant",
     "type": "project",
-    "description": "The Laravel Boilerplate Project.",
+    "description": "The Laravel Multi Tenant Boilerplate Project.",
     "keywords": [
         "framework",
         "laravel",
-        "boilerplate"
+        "boilerplate",
+        "multi-tenant"
     ],
     "license": "MIT",
     "require": {
