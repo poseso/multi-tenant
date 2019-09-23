@@ -161,7 +161,7 @@ Contacto: carlos@modocreativo.net
 <!-- end:: Page -->
 @include('backend.includes.quickpanel')
 @include('backend.includes.scrolltop')
-@include('backend.includes.toolbar')
+{{--@include('backend.includes.toolbar')--}}
 @include('backend.includes.demo-panel')
 @include('backend.includes.chat')
 
