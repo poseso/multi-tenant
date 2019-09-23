@@ -1,29 +1,38 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.frontend.passwords.expired_password_box_title'))
+@section('title', app_name() . ' | ' . __('Su contraseña ha expirado'))
 
 @section('content')
-    <div class="row justify-content-center align-items-center">
-        <div class="col col-sm-6 align-self-center">
-            <div class="card">
-                <div class="card-header">
-                    <strong>
-                        @lang('labels.frontend.passwords.expired_password_box_title')
-                    </strong>
-                </div><!--card-header-->
+    <div class="kt-grid kt-grid--ver kt-grid--root">
+        <div class="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url({{ asset('assets/media/bg/bg-3.jpg') }}); background-size: cover;">
+                @include('includes.partials.read-only')
+                @include('includes.partials.messages')
+                <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                    <div class="messages"></div>
+                    <div class="kt-login__container">
+                        <div class="kt-login__logo">
+                            <a href="#">
+                                <img src="{{ asset('assets/media/logos/contasoft-black.svg') }}" alt="Logo Contasoft">
+                            </a>
+                        </div>
 
-                <div class="card-body">
-                    {{ html()->form('PATCH', route('frontend.auth.password.expired.update'))->class('form-horizontal')->open() }}
+                        {{ html()->form('PATCH', route('frontend.auth.password.expired.update'))->class('kt-form')->open() }}
+                        <div class="kt-login__head">
+                            <h3 class="kt-login__title">
+                                {{ __('Su contraseña ha expirado') }}
+                            </h3>
+                            <div class="kt-login__desc">
+                                {{ __('Escriba su contraseña antigua seguido de la nueva contraseña para confirmar los cambios.') }}
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.old_password'))->for('old_password') }}
-
                                     {{ html()->password('old_password')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.old_password'))
-                                        ->required() }}
+                                        ->placeholder(__('Contraseña antigua')) }}
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
@@ -31,12 +40,9 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
-
                                     {{ html()->password('password')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.password'))
-                                        ->required() }}
+                                        ->placeholder(__('Contraseña')) }}
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
@@ -44,27 +50,26 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation') }}
-
                                     {{ html()->password('password_confirmation')
                                         ->class('form-control')
-                                        ->placeholder(__('validation.attributes.frontend.password_confirmation'))
-                                        ->required() }}
+                                        ->placeholder(__('Confirmación de la contraseña')) }}
                                 </div><!--form-group-->
                             </div><!--col-->
                         </div><!--row-->
 
                         <div class="row">
                             <div class="col">
-                                <div class="form-group mb-0 clearfix">
-                                    {{ form_submit(__('labels.frontend.passwords.update_password_button')) }}
-                                </div><!--form-group-->
+                                {{ form_cancel(route('frontend.auth.login'), __('Cancelar')) }}
+                            </div><!--col-->
+
+                            <div class="col text-right">
+                                {{ form_submit(__('Actualizar Contraseña')) }}
                             </div><!--col-->
                         </div><!--row-->
-
-                    {{ html()->form()->close() }}
-                </div><!-- card-body -->
-            </div><!-- card -->
-        </div><!-- col-6 -->
-    </div><!-- row -->
+                        {{ html()->form()->close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
