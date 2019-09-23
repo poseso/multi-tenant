@@ -8,7 +8,7 @@
                         <img src="@if($lang != 'es') {{ asset('assets/media/flags/020-us.svg') }} @else {{ asset('assets/media/flags/021-dominican.svg') }}@endif" alt="" />
                     </span>
 
-                        <span class="kt-nav__link-text">
+                    <span class="kt-nav__link-text">
                         {{ __('menus.language-picker.langs.'.$lang) }}
                     </span>
                     </a>
