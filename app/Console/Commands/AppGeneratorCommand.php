@@ -59,8 +59,8 @@ abstract class AppGeneratorCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return bool|null
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @return bool|null
      */
     public function handle()
     {
