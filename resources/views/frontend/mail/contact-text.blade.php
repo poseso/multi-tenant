@@ -1,6 +1,6 @@
-@lang('strings.emails.contact.email_body_title')
+{{ __('Tiene una nueva solicitud del formulario de contacto. A continuación los detalles:') }}
 
-@lang('validation.attributes.frontend.name'): {{ $request->name }}
-@lang('validation.attributes.frontend.email'): {{ $request->email }}
-@lang('validation.attributes.frontend.phone'): {{ $request->phone ?? 'N/A' }}
-@lang('validation.attributes.frontend.message'): {{ $request->message }}
+{{ __('Nombre Completo') }}: {{ $request->name }}
+{{ __('Dirección de correo') }}: {{ $request->email }}
+{{ __('Teléfono') }}: {{ $request->phone ?? __('No Disponible') }}
+{{ __('Mensaje') }}: {{ $request->message }}
