@@ -9,7 +9,7 @@ $rules = [
     'blank_line_after_opening_tag' => true,
     'blank_line_before_statement' => [
         'statements' => [
-            'continue', 'declare', 'return', 'throw', 'try', 'do', 'if',
+            'break', 'case', 'continue', 'declare', 'default', 'do', 'exit', 'for', 'foreach', 'if', 'return', 'throw', 'try',
             'switch'
         ]
     ],
