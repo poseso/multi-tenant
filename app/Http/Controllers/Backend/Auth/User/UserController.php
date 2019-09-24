@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Auth\User;
 
+use DataTables;
 use App\Models\Auth\User;
 use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\User\UserDeleted;
@@ -30,6 +31,44 @@ class UserController extends Controller
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+    }
+
+    /**
+     * Show the DataTables resource.
+     *
+     * @param UserRequest $request
+     * @throws \Exception
+     * @return mixed
+     */
+    public function getDataTables(UserRequest $request)
+    {
+        return Datatables::of($this->userRepository->getForDataTable($request->get('status'), $request->get('trashed')))
+            ->escapeColumns(['first_name', 'last_name', 'email'])
+            ->editColumn('confirmed', function ($user) {
+                return $user->confirmed_label;
+            })
+            ->filterColumn('confirmed', function ($query, $keyword) {
+                $param = (strtolower($keyword) == 'si') ? 1 : 0;
+                $query->where('confirmed', '=', $param);
+            })
+            ->editColumn('updated_at', function ($user) {
+                return $user->updated_at->tz(get_timezone())->format(get_full_date());
+            })
+            ->filterColumn('updated_at', function ($query, $keyword) {
+                if (strpos($keyword, '-') !== false) {
+                    $value = collect(explode('-', $keyword))
+                        ->reverse()
+                        ->implode('-');
+                    $query->where('updated_at', 'like', "%$value%");
+                }
+            })
+            ->addColumn('social', function ($user) {
+                return $user->social_buttons;
+            })
+            ->addColumn('actions', function ($user) {
+                return $user->action_buttons;
+            })
+            ->make(true);
     }
 
     /**
@@ -68,6 +107,7 @@ class UserController extends Controller
         $this->userRepository->create($request->only(
             'first_name',
             'last_name',
+            'username',
             'email',
             'password',
             'active',
@@ -77,7 +117,7 @@ class UserController extends Controller
             'permissions'
         ));
 
-        return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.created'));
+        return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('El usuario fue creado correctamente.'));
     }
 
     /**
@@ -123,12 +163,13 @@ class UserController extends Controller
         $this->userRepository->update($user, $request->only(
             'first_name',
             'last_name',
+            'username',
             'email',
             'roles',
             'permissions'
         ));
 
-        return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.updated'));
+        return redirect()->route('admin.auth.user.index')->withFlashSuccess(__("El Usuario $user->full_name fue actualizado correctamente."));
     }
 
     /**
@@ -144,6 +185,6 @@ class UserController extends Controller
 
         event(new UserDeleted($user));
 
-        return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__('alerts.backend.users.deleted'));
+        return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__("El usuario $user->full_name fue eliminado correctamente."));
     }
 }

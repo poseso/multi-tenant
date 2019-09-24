@@ -72,7 +72,7 @@ class RoleController extends Controller
     {
         $this->roleRepository->create($request->only('name', 'associated-permissions', 'permissions', 'sort'));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('alerts.backend.roles.created'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol creado correctamente.'));
     }
 
     /**
@@ -84,7 +84,7 @@ class RoleController extends Controller
     public function edit(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
-            return redirect()->route('admin.auth.role.index')->withFlashDanger('You can not edit the administrator role.');
+            return redirect()->route('admin.auth.role.index')->withFlashDanger('No puedes modificar el Rol de Administrador.');
         }
 
         return view('backend.auth.role.edit')
@@ -105,7 +105,7 @@ class RoleController extends Controller
     {
         $this->roleRepository->update($role, $request->only('name', 'permissions'));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('alerts.backend.roles.updated'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol actualizado correctamente.'));
     }
 
     /**
@@ -118,13 +118,13 @@ class RoleController extends Controller
     public function destroy(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
-            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('exceptions.backend.access.roles.cant_delete_admin'));
+            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puede eliminar el Rol de Administrador.'));
         }
 
         $this->roleRepository->deleteById($role->id);
 
         event(new RoleDeleted($role));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('alerts.backend.roles.deleted'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol eliminado correctamente.'));
     }
 }

@@ -20,11 +20,11 @@ class UserSessionController extends Controller
     public function clearSession(ManageUserRequest $request, User $user)
     {
         if ($user->id === auth()->id()) {
-            return redirect()->back()->withFlashDanger(__('exceptions.backend.access.users.cant_delete_own_session'));
+            return redirect()->back()->withFlashDanger(__('No puedes eliminar tu propia sesión.'));
         }
 
         $user->update(['to_be_logged_out' => true]);
 
-        return redirect()->back()->withFlashSuccess(__('alerts.backend.users.session_cleared'));
+        return redirect()->back()->withFlashSuccess(__('La sesión del usuario se limpio correctamente.'));
     }
 }

@@ -44,9 +44,9 @@ class ProfileController extends Controller
         if (is_array($output) && $output['email_changed']) {
             auth()->logout();
 
-            return redirect()->route('frontend.auth.login')->withFlashInfo(__('strings.frontend.user.email_changed_notice'));
+            return redirect()->route('frontend.auth.login')->withFlashInfo(__('Debe confirmar su nueva dirección de correo electrónico antes de poder iniciar sesión nuevamente.'));
         }
 
-        return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
+        return redirect()->route('frontend.user.account')->withFlashSuccess(__('Cuenta actualizada correctamente.'));
     }
 }
