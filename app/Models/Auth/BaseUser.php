@@ -35,6 +35,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
     protected $fillable = [
         'first_name',
         'last_name',
+        'username',
         'email',
         'avatar_type',
         'avatar_location',
@@ -46,6 +47,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         'timezone',
         'last_login_at',
         'last_login_ip',
+        'email_verified_at',
         'to_be_logged_out',
     ];
 
@@ -58,6 +60,20 @@ abstract class BaseUser extends Authenticatable implements Recordable
     ];
 
     /**
+     * Protected Default Settings.
+     *
+     * @var array
+     */
+    protected $settingsConfig = [
+        'default' => [
+            'timezone' => 'America/Santo_Domingo',
+            'language' => 'es',
+            'dateformat' => 'd-m-Y',
+            'timeformat' => 'g:i A',
+        ],
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -66,6 +82,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         'active' => 'boolean',
         'confirmed' => 'boolean',
         'to_be_logged_out' => 'boolean',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
