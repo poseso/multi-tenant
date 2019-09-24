@@ -13,7 +13,7 @@ class HtmlHelper
     /**
      * The URL generator instance.
      *
-     * @var \Illuminate\Contracts\Routing\UrlGenerator
+     * @var UrlGenerator
      */
     protected $url;
 
@@ -52,7 +52,7 @@ class HtmlHelper
      * @param array  $attributes
      * @param bool   $secure
      *
-     * @return \Illuminate\Support\HtmlString
+     * @return HtmlString
      */
     public function script($url, $attributes = [], $secure = null)
     {
@@ -140,7 +140,7 @@ class HtmlHelper
      *
      * @param $html
      *
-     * @return \Illuminate\Support\HtmlString
+     * @return HtmlString
      */
     protected function toHtmlString($html)
     {
