@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Faker\Generator;
 use Ramsey\Uuid\Uuid;
 use App\Models\Auth\User;
@@ -21,7 +22,9 @@ $factory->define(User::class, function (Generator $faker) {
         'uuid' => Uuid::uuid4()->toString(),
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
+        'username' => $faker->userName,
         'email' => $faker->unique()->safeEmail,
+        'email_verified_at' => Carbon::now(),
         'password' => 'secret',
         'password_changed_at' => null,
         'remember_token' => Str::random(10),
