@@ -35,7 +35,7 @@ if (! function_exists('home_route')) {
                 return 'admin.dashboard';
             }
 
-            return view('errors.403');
+            abort(403);
         }
 
         return 'frontend.auth.login';
