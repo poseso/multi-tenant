@@ -32,7 +32,6 @@ class AuthTableSeeder extends Seeder
             'social_accounts',
         ]);
 
-        $this->call(UserTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(UserRoleTableSeeder::class);
 
