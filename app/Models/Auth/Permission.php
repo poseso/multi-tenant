@@ -16,15 +16,15 @@ class Permission extends SpatiePermission implements Recordable
     public static function defaultPermissions()
     {
         return [
-            'users.create',
-            'users.read',
-            'users.update',
-            'users.delete',
+            'view_users',
+            'add_users',
+            'edit_users',
+            'delete_users',
 
-            'roles.create',
-            'roles.read',
-            'roles.update',
-            'roles.delete',
+            'view_roles',
+            'add_roles',
+            'edit_roles',
+            'delete_roles',
         ];
     }
 }

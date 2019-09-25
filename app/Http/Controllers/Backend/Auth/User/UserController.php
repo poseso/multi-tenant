@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Auth\User;
 
 use DataTables;
 use App\Models\Auth\User;
+use App\Models\Traits\Authorizable;
 use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\User\UserDeleted;
 use App\Repositories\Backend\Auth\RoleRepository;
@@ -18,6 +19,8 @@ use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
  */
 class UserController extends Controller
 {
+    use Authorizable;
+
     /**
      * @var UserRepository
      */

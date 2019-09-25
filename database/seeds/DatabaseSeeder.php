@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
             'sessions',
         ]);
 
-        $this->call(AuthTableSeeder::class);
+        $this->call([
+            AuthTableSeeder::class,
+            SettingsTableSeeder::class,
+            PaisesTableSeeder::class,
+            ProvinciasTableSeeder::class,
+            MunicipiosTableSeeder::class,
+        ]);
 
         Model::reguard();
     }

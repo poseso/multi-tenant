@@ -24,12 +24,12 @@
                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
             </li>
 
-            <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin.auth.*'), 'kt-menu__item--open kt-menu__item--active') }}"
+            <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin.auth.user.*'), 'kt-menu__item--open kt-menu__item--active') }}"
                 aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                 <a href="javascript:;" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/auth*')) }}">
                     <i class="kt-menu__link-icon flaticon-users-1"></i>
                     <span class="kt-menu__link-text">
-                            {{ __('Usuarios') }}
+                            {{ __('Administración de Usuarios') }}
                         </span>
 
                     @if ($pending_approval > 0)
@@ -104,10 +104,50 @@
                 </div>
             </li>
 
+            <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin.auth.role.*'), 'kt-menu__item--open kt-menu__item--active') }}"
+                aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                <a href="javascript:;" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/auth/role*')) }}">
+                    <i class="kt-menu__link-icon flaticon-safe-shield-protection"></i>
+                    <span class="kt-menu__link-text">
+                        {{ __('Administración de Roles') }}
+                    </span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.role.index'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.role.index') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Listado de Roles') }}
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="kt-menu__item @if(active_class(Route::is('admin.auth.role.create'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <a href="{{ route('admin.auth.role.create') }}" class="kt-menu__link">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
+                                    <span></span>
+                                </i>
+
+                                <span class="kt-menu__link-text">
+                                    {{ __('Nuevo Rol') }}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin/log-viewer*'), 'kt-menu__item--open kt-menu__item--active') }}"
                 aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                 <a href="javascript:" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/log-viewer*')) }}">
-                    <i class="kt-menu__link-icon flaticon-lock"></i>
+                    <i class="kt-menu__link-icon flaticon-security"></i>
                     <span class="kt-menu__link-text">
                         {{ __('Logs de Errores') }}
                     </span>
