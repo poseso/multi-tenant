@@ -26,14 +26,15 @@ class AuthTableSeeder extends Seeder
             config('permission.table_names.role_has_permissions'),
             config('permission.table_names.permissions'),
             config('permission.table_names.roles'),
+            config('permission.table_names.modules'),
             'users',
             'password_histories',
             'password_resets',
             'social_accounts',
         ]);
 
+        $this->call(ModulesTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
-        $this->call(UserRoleTableSeeder::class);
 
         $this->enableForeignKeys();
     }

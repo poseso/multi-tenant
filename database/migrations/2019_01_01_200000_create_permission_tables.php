@@ -12,12 +12,26 @@ class CreatePermissionTables extends Migration
     {
         $tableNames = config('permission.table_names');
 
-        if (! Schema::hasTable($tableNames['permissions'])) {
-            Schema::create($tableNames['permissions'], function (Blueprint $table) {
+        if (! Schema::hasTable($tableNames['modules'])) {
+            Schema::create($tableNames['modules'], function (Blueprint $table) {
                 $table->increments('id');
+                $table->string('name')->index();
+                $table->timestamps();
+            });
+        }
+
+        if (! Schema::hasTable($tableNames['permissions'])) {
+            Schema::create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
+                $table->increments('id');
+                $table->unsignedInteger('module_id');
                 $table->string('name');
                 $table->string('guard_name');
                 $table->timestamps();
+
+                $table->foreign('module_id')
+                      ->references('id')
+                      ->on($tableNames['modules'])
+                      ->onDelete('cascade');
             });
         }
 
@@ -32,6 +46,7 @@ class CreatePermissionTables extends Migration
 
         if (! Schema::hasTable($tableNames['model_has_permissions'])) {
             Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames) {
+                $table->unsignedInteger('module_id');
                 $table->unsignedInteger('permission_id');
                 $table->morphs('model');
 
@@ -40,7 +55,12 @@ class CreatePermissionTables extends Migration
                     ->on($tableNames['permissions'])
                     ->onDelete('cascade');
 
-                $table->primary(['permission_id', 'model_id', 'model_type']);
+                $table->foreign('module_id')
+                      ->references('id')
+                      ->on($tableNames['modules'])
+                      ->onDelete('cascade');
+
+                $table->primary(['permission_id', 'module_id', 'model_id', 'model_type'], 'model_has_permissions_primary');
             });
         }
 
@@ -90,5 +110,6 @@ class CreatePermissionTables extends Migration
         Schema::drop($tableNames['model_has_permissions']);
         Schema::drop($tableNames['roles']);
         Schema::drop($tableNames['permissions']);
+        Schema::drop($tableNames['modules']);
     }
 }

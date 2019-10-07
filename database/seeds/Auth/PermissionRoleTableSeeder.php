@@ -23,25 +23,27 @@ class PermissionRoleTableSeeder extends Seeder
         $permissions = Permission::defaultPermissions();
 
         foreach ($permissions as $perms) {
-            Permission::firstOrCreate(['name' => $perms]);
+            Permission::firstOrCreate([
+                'name' => $perms,
+                'module_id' => '1'
+            ]);
         }
 
         $this->command->info('Permisos predeterminados agregados correctamente.');
 
-        $input_roles = 'administrator,user';
+        // Create Roles
+        Role::create(['name' => config('access.users.admin_role')]);
+        Role::create(['name' => config('access.users.default_role')]);
 
-        // Explode roles
-        $roles = explode(',', $input_roles);
+        $roles = Role::all();
 
         // Add roles
         foreach($roles as $role) {
-            $role = Role::firstOrCreate(['name' => $role]);
-
-            if( $role->name == 'administrator' ) {
+            if( $role->name == config('access.users.admin_role') ) {
                 // Assign all permissions
                 // Note: Admin (User 1) Has all permissions via a gate in the AuthServiceProvider
                 $role->syncPermissions(Permission::all());
-                $this->command->info('Todos los permisos otorgados al usuario: administrator');
+                $this->command->info(__("Todos los permisos otorgados al usuario:" . config('access.users.admin_role')));
             } else {
                 // For others by default only read access
                 $role->syncPermissions(Permission::where('name', 'LIKE', '%.read')->get());
@@ -64,16 +66,16 @@ class PermissionRoleTableSeeder extends Seeder
         $user = factory(User::class)->create();
         $user->assignRole($role->name);
 
-        if( $role->name == 'administrator' ) {
-            $this->command->info('Detalles para iniciar sesión como administrador:');
-            $this->command->warn("Correo: $user->email");
-            $this->command->warn("Usuario: $user->username");
-            $this->command->warn('Contraseña: secret');
+        if( $role->name == config('access.users.admin_role') ) {
+            $this->command->info(__('Detalles para iniciar sesión como administrador:'));
+            $this->command->warn(__("Correo: $user->email"));
+            $this->command->warn(__("Usuario: $user->username"));
+            $this->command->warn(__('Contraseña: secret'));
         }else{
-            $this->command->info('Detalles para iniciar sesión como usuario:');
-            $this->command->warn("Correo: $user->email");
-            $this->command->warn("Usuario: $user->username");
-            $this->command->warn('Contraseña: secret');
+            $this->command->info(__('Detalles para iniciar sesión como usuario:'));
+            $this->command->warn(__("Correo: $user->email"));
+            $this->command->warn(__("Usuario: $user->username"));
+            $this->command->warn(__('Contraseña: secret'));
         }
     }
 }
