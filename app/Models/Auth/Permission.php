@@ -13,6 +13,11 @@ class Permission extends SpatiePermission implements Recordable
 {
     use RecordableTrait;
 
+    public function modules()
+    {
+        return $this->belongsTo(Module::class);
+    }
+
     public static function defaultPermissions()
     {
         $permissions = [];
