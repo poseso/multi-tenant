@@ -10,7 +10,11 @@
                     <strong>@lang('strings.backend.dashboard.welcome') {{ $logged_in_user->name }}!</strong>
                 </div><!--card-header-->
                 <div class="card-body">
-                    {!! __('strings.backend.welcome') !!}
+                    <pre>
+                        @foreach ($permissions as $permission)
+                            {{ $permission->module->name }}
+                        @endforeach
+                    </pre>
                 </div><!--card-body-->
             </div><!--card-->
         </div><!--col-->

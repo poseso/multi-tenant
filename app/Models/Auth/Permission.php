@@ -4,8 +4,8 @@ namespace App\Models\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
 use Altek\Accountant\Recordable as RecordableTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Models\Permission as SpatiePermission;
-
 /**
  * Class Permission.
  */
@@ -13,7 +13,7 @@ class Permission extends SpatiePermission implements Recordable
 {
     use RecordableTrait;
 
-    public function modules()
+    public function module() : BelongsTo
     {
         return $this->belongsTo(Module::class);
     }

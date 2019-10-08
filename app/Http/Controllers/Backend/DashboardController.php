@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Auth\Permission;
+use App\Http\Controllers\Controller;
 
 /**
  * Class DashboardController.
@@ -15,8 +15,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::get();
-        dd($permissions);
-        return view('backend.dashboard');
+        $permissions = Permission::with('module')->selectRaw('module_id')->groupBy('module_id')->get();
+
+        return view('backend.dashboard', compact('permissions'));
     }
 }
