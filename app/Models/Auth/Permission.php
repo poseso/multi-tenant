@@ -15,21 +15,38 @@ class Permission extends SpatiePermission implements Recordable
 
     public static function defaultPermissions()
     {
-        return [
-            'users.create',
-            'users.read',
-            'users.update',
-            'users.delete',
+        $permissions = [];
 
-            'roles.create',
-            'roles.read',
-            'roles.update',
-            'roles.delete',
-
-            'dashboard.create',
-            'dashboard.read',
-            'dashboard.update',
-            'dashboard.delete'
+        $permissions[] = [
+            'name' => [
+                'users.create',
+                'users.read',
+                'users.update',
+                'users.delete',
+            ],
+            'module_id' => 1
         ];
+
+        $permissions[] = [
+            'name' => [
+                'roles.create',
+                'roles.read',
+                'roles.update',
+                'roles.delete',
+            ],
+            'module_id' => 2
+        ];
+
+        $permissions[] = [
+            'name' => [
+                'dashboard.create',
+                'dashboard.read',
+                'dashboard.update',
+                'dashboard.delete',
+            ],
+            'module_id' => 3
+        ];
+
+        return $permissions;
     }
 }
