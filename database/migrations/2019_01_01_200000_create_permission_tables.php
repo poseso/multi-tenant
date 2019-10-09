@@ -25,13 +25,14 @@ class CreatePermissionTables extends Migration
                 $table->increments('id');
                 $table->unsignedInteger('module_id');
                 $table->string('name');
+                $table->string('display_name')->nullable();
                 $table->string('guard_name');
                 $table->timestamps();
 
                 $table->foreign('module_id')
-                      ->references('id')
-                      ->on($tableNames['modules'])
-                      ->onDelete('cascade');
+                    ->references('id')
+                    ->on($tableNames['modules'])
+                    ->onDelete('cascade');
             });
         }
 
@@ -57,9 +58,9 @@ class CreatePermissionTables extends Migration
                     ->onDelete('cascade');
 
                 $table->foreign('module_id')
-                      ->references('id')
-                      ->on($tableNames['modules'])
-                      ->onDelete('cascade');
+                    ->references('id')
+                    ->on($tableNames['modules'])
+                    ->onDelete('cascade');
 
                 $table->primary(['permission_id', 'module_id', 'model_id', 'model_type'], 'model_has_permissions_primary');
             });
