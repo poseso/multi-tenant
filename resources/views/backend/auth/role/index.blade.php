@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', app_name() . ' | '. __('labels.backend.access.roles.management'))
+@section('title', app_name() . ' | '. __('Administración de Roles'))
 
 @section('content')
 <div class="card">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    @lang('labels.backend.access.roles.management')
+                    {{ __('Administración de Roles') }}
                 </h4>
             </div><!--col-->
 
@@ -23,10 +23,10 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>@lang('labels.backend.access.roles.table.role')</th>
-                            <th>@lang('labels.backend.access.roles.table.permissions')</th>
-                            <th>@lang('labels.backend.access.roles.table.number_of_users')</th>
-                            <th>@lang('labels.general.actions')</th>
+                            <th>{{ __('Rol') }}</th>
+                            <th>{{ __('Permisos') }}</th>
+                            <th>{{ __('Número de Usuarios') }}</th>
+                            <th>{{ __('Acciones') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,7 +39,7 @@
                                         @else
                                             @if($role->permissions->count())
                                                 @foreach($role->permissions as $permission)
-                                                    {{ ucwords($permission->name) }}
+                                                    {{ ucwords($permission->module->name) }} ({{ $permission->name }}) <br />
                                                 @endforeach
                                             @else
                                                 {{ __('Ninguno') }}

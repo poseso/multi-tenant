@@ -1,3 +1,4 @@
-<div class="btn-toolbar float-right" role="toolbar" aria-label="@lang('labels.general.toolbar_btn_groups')">
-    <a href="{{ route('admin.auth.user.create') }}" class="btn btn-success ml-1" data-toggle="tooltip" title="@lang('labels.general.create_new')"><i class="fas fa-plus-circle"></i></a>
-</div><!--btn-toolbar-->
+<a href="{{ route('admin.auth.user.create') }}" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="kt-tooltip-desktop" data-skin="dark" title="{{ __('Crear Nuevo Usuario') }}">
+    <i class="la la-plus"></i>
+    {{ __('Nuevo Usuario') }}
+</a>
