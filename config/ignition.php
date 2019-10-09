@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Editor
@@ -107,5 +106,4 @@ return [
     |
     */
     'housekeeping_endpoint_prefix' => '_ignition',
-
 ];

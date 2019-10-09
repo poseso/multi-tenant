@@ -48,8 +48,8 @@ class ForgotPasswordController extends Controller
      * Validate the email for the given request.
      *
      * @param Request $request
-     * @return mixed
      * @throws \Illuminate\Validation\ValidationException
+     * @return mixed
      */
     protected function validateEmail(Request $request)
     {

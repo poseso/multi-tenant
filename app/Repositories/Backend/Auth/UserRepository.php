@@ -35,6 +35,37 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @param int  $status
+     * @param bool $trashed
+     *
+     * @return mixed
+     */
+    public function getForDataTable($status = 1, $trashed = false)
+    {
+        $dataTableQuery = $this->model
+            ->with('providers', 'permissions')
+            ->select([
+                'users.id',
+                'users.first_name',
+                'users.last_name',
+                'users.username',
+                'users.email',
+                'users.confirmed',
+                'users.active',
+                'users.created_at',
+                'users.updated_at',
+                'users.deleted_at',
+            ])
+            ->where('id', '!=', '1');
+
+        if ($trashed == 'true') {
+            return $dataTableQuery->onlyTrashed();
+        }
+        // active() is a scope on the UserScope trait
+        return $dataTableQuery->active($status);
+    }
+
+    /**
      * @return mixed
      */
     public function getUnconfirmedCount() : int

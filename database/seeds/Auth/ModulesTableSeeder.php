@@ -9,8 +9,6 @@ class ModulesTableSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -20,17 +18,17 @@ class ModulesTableSeeder extends Seeder
             [
                 'name' => 'Usuarios',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Roles',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'Panel Administrativo',
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
+                'updated_at' => Carbon::now(),
             ],
         ];
 

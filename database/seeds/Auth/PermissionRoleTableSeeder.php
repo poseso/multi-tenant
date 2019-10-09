@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Auth\User;
 use App\Models\Auth\Role;
+use App\Models\Auth\User;
 use App\Models\Auth\Permission;
 use Illuminate\Database\Seeder;
 
@@ -26,7 +26,7 @@ class PermissionRoleTableSeeder extends Seeder
             foreach ($perms['name'] as $name) {
                 Permission::firstOrCreate([
                     'module_id' => $perms['module_id'],
-                    'name' => $name
+                    'name' => $name,
                 ]);
             }
         }
@@ -44,13 +44,13 @@ class PermissionRoleTableSeeder extends Seeder
         $roles = Role::all();
 
         // Add roles
-        foreach($roles as $role) {
-            if( $role->name == config('access.users.admin_role') ) {
+        foreach ($roles as $role) {
+            if ($role->name == config('access.users.admin_role')) {
                 // Assign all permissions
                 // Note: Admin (User 1) Has all permissions via a gate in the AuthServiceProvider
                 $role->syncPermissions(Permission::all());
                 $this->command->info('--------------------------------------------------------');
-                $this->command->info(__("TODOS LOS PERMISOS OTORGADOS AL ROL" .' '. mb_strtoupper(config('access.users.admin_role'))));
+                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS AL ROL'.' '.mb_strtoupper(config('access.users.admin_role'))));
                 $this->command->info('--------------------------------------------------------');
             } else {
                 // For others by default only read access
@@ -65,7 +65,7 @@ class PermissionRoleTableSeeder extends Seeder
     }
 
     /**
-     * Create a user with given role
+     * Create a user with given role.
      *
      * @param $role
      */
@@ -74,7 +74,7 @@ class PermissionRoleTableSeeder extends Seeder
         $user = factory(User::class)->create();
         $user->assignRole($role->name);
 
-        if( $role->name == config('access.users.admin_role') ) {
+        if ($role->name == config('access.users.admin_role')) {
             $this->command->info('--------------------------------------------------------');
             $this->command->info(__('DETALLES PARA INICIAR SESION COMO ADMINISTRADOR:'));
             $this->command->info('--------------------------------------------------------');
@@ -83,7 +83,7 @@ class PermissionRoleTableSeeder extends Seeder
             $this->command->warn(__("Usuario: $user->username"));
             $this->command->warn(__('Contraseña: secret'));
             $this->command->info('');
-        }else{
+        } else {
             $this->command->info('--------------------------------------------------------');
             $this->command->info(__('DETALLES PARA INICIAR SESION COMO USUARIO:'));
             $this->command->info('--------------------------------------------------------');

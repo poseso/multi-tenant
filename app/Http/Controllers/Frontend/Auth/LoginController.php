@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use Settings;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Events\Frontend\Auth\UserLoggedIn;
 use App\Events\Frontend\Auth\UserLoggedOut;
 use Illuminate\Validation\ValidationException;
@@ -55,7 +55,6 @@ class LoginController extends Controller
      * Validate the user login request.
      *
      * @param  \Illuminate\Http\Request $request
-     *
      */
     protected function validateLogin(Request $request)
     {

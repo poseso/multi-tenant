@@ -35,7 +35,7 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', Rule::unique('users')],
             'password' => [
                 PasswordRules::register($this->email),
-                (new BreachedPasswords())->setMessage(__('La contraseña ha sido expuesta en una violación de datos.'))
+                (new BreachedPasswords())->setMessage(__('La contraseña ha sido expuesta en una violación de datos.')),
             ],
             'g-recaptcha-response' => ['required_if:captcha_status,true', 'captcha'],
         ];

@@ -40,15 +40,15 @@ class UserController extends Controller
      * @throws \Exception
      * @return mixed
      */
-    public function getDataTables(UserRequest $request)
+    public function getDataTables(ManageUserRequest $request)
     {
         return Datatables::of($this->userRepository->getForDataTable($request->get('status'), $request->get('trashed')))
             ->escapeColumns(['first_name', 'last_name', 'email'])
             ->editColumn('confirmed', function ($user) {
-                return $user->confirmed_label;
+                return view('backend.auth.user.includes.confirm', ['user' => $user]);
             })
             ->filterColumn('confirmed', function ($query, $keyword) {
-                $param = (strtolower($keyword) == 'si') ? 1 : 0;
+                $param = (strtolower($keyword) == __('si')) ? 1 : 0;
                 $query->where('confirmed', '=', $param);
             })
             ->editColumn('updated_at', function ($user) {
@@ -63,10 +63,16 @@ class UserController extends Controller
                 }
             })
             ->addColumn('social', function ($user) {
-                return $user->social_buttons;
+                return view('backend.auth.user.includes.social-buttons', ['user' => $user]);
+            })
+            ->addColumn('roles', function ($user) {
+                return "<span class='badge badge-success bg-light-blue-a300'>$user->roles_label</span>";
+            })
+            ->addColumn('permissions', function ($user) {
+                return $user->permissions_label;
             })
             ->addColumn('actions', function ($user) {
-                return $user->action_buttons;
+                return view('backend.auth.user.includes.actions', ['user' => $user]);
             })
             ->make(true);
     }

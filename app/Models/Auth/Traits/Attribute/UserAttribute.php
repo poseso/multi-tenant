@@ -67,7 +67,7 @@ trait UserAttribute
             }, $roles));
         }
 
-        return 'N/A';
+        return __('Ningúno');
     }
 
     /**
@@ -83,6 +83,6 @@ trait UserAttribute
             }, $permissions));
         }
 
-        return 'N/A';
+        return __('Ningúno');
     }
 }
