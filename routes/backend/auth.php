@@ -17,6 +17,9 @@ Route::group([
 ], function () {
     // User Management
     Route::group(['namespace' => 'User'], function () {
+        // For DataTables
+        Route::get('user/get', [UserController::class, 'getDataTables'])->name('user.get');
+
         // User Status'
         Route::get('user/deactivated', [UserStatusController::class, 'getDeactivated'])->name('user.deactivated');
         Route::get('user/deleted', [UserStatusController::class, 'getDeleted'])->name('user.deleted');
