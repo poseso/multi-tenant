@@ -30,6 +30,12 @@ class Permission extends SpatiePermission implements Recordable
                 'users.update',
                 'users.delete',
             ],
+            'display_name' => [
+                'Crear usuarios',
+                'Ver usuarios',
+                'Modificar usuarios',
+                'Eliminar usuarios',
+            ],
             'module_id' => 1,
         ];
 
@@ -40,6 +46,12 @@ class Permission extends SpatiePermission implements Recordable
                 'roles.update',
                 'roles.delete',
             ],
+            'display_name' => [
+                'Crear perfiles',
+                'Ver perfiles',
+                'Modificar perfiles',
+                'Eliminar perfiles',
+            ],
             'module_id' => 2,
         ];
 
@@ -49,6 +61,12 @@ class Permission extends SpatiePermission implements Recordable
                 'dashboard.read',
                 'dashboard.update',
                 'dashboard.delete',
+            ],
+            'display_name' => [
+                'Crear panel principal',
+                'Ver panel principal',
+                'Modificar panel principal',
+                'Eliminar panel principal',
             ],
             'module_id' => 3,
         ];

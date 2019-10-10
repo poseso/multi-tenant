@@ -24,10 +24,11 @@ class PermissionRoleTableSeeder extends Seeder
 
         foreach ($permissions as $perms) {
             foreach ($perms['name'] as $name) {
-                Permission::firstOrCreate([
-                    'module_id' => $perms['module_id'],
-                    'name' => $name,
-                ]);
+                Permission::firstOrCreate( [
+                    'module_id'    => $perms['module_id'],
+                    'name'         => $name,
+                    'display_name' => $perms['display_name'],
+                ] );
             }
         }
 
