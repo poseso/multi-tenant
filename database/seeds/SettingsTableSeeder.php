@@ -38,6 +38,6 @@ class SettingsTableSeeder extends Seeder
             ],
         ];
 
-        DB::table('settings')->insert($settings);
+        DB::table('settings')->insertOrIgnore($settings);
     }
 }
