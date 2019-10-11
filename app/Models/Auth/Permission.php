@@ -57,16 +57,10 @@ class Permission extends SpatiePermission implements Recordable
 
         $permissions[] = [
             'name' => [
-                'dashboard.create',
                 'dashboard.read',
-                'dashboard.update',
-                'dashboard.delete',
             ],
             'display_name' => [
-                'Crear panel principal',
                 'Ver panel principal',
-                'Modificar panel principal',
-                'Eliminar panel principal',
             ],
             'module_id' => 3,
         ];

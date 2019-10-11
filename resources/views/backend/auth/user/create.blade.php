@@ -194,13 +194,13 @@
                                                 @foreach($permissions as $permission)
                                                     <div class="checkbox d-flex align-items-center">
                                                         {{ html()->label(
-                                                                html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)
+                                                                html()->checkbox('permissions[]', old('permissions') && in_array($permission->display_name, old('permissions')) ? true : false, $permission->display_name)
                                                                       ->class('switch-input')
                                                                       ->id('permission-'.$permission->id)
                                                                     . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
                                                                 ->class('switch switch-label switch-pill switch-primary mr-2')
                                                             ->for('permission-'.$permission->id) }}
-                                                        {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
+                                                        {{ html()->label(ucwords($permission->display_name))->for('permission-'.$permission->id) }}
                                                     </div>
                                                 @endforeach
                                             @endif

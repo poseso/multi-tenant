@@ -35,25 +35,48 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        {{ html()->label(__('validation.attributes.backend.access.roles.associated_permissions'))
-                            ->class('col-md-2 form-control-label')
-                            ->for('permissions') }}
+
+                        <h4>{{ __('Permisos Asociados') }}</h4>
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="align-middle">{{ __('SECCIÓN') }}</th>
+                                <th class="text-center" width="1%">
+                                    <span class="kt-switch kt-switch--icon">
+                                        <label>
+                                            {{ html()->checkbox('create', false, null)->class('checkAll') }}
+                                            <span></span>
+                                        </label>
+                                        {{ __('CREAR') }}
+                                    </span>
+                                </th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
 
                         <div class="col-md-10">
-                            @if($permissions->count())
-                                @foreach($permissions as $permission)
-                                    <div class="checkbox d-flex align-items-center">
-                                        {{ html()->label(
-                                                html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)
-                                                      ->class('switch-input')
-                                                      ->id('permission-'.$permission->id)
-                                                    . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
-                                                ->class('switch switch-label switch-pill switch-primary mr-2')
-                                            ->for('permission-'.$permission->id) }}
-                                        {{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}
-                                    </div>
-                                @endforeach
-                            @endif
+                            @foreach ( $permissions as $key => $module)
+                                <h4 class="card-title mb-0">{{ $key }}</h4>
+                                <div class="row">
+                                    @foreach ( $module as $permission)
+                                        <div class="col-3">{{ $permission->display_name }}</div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                            {{--@if($permissions->count())--}}
+                                {{--@foreach($permissions as $permission)--}}
+                                    {{--<div class="checkbox d-flex align-items-center">--}}
+                                        {{--{{ html()->label(--}}
+                                                {{--html()->checkbox('permissions[]', old('permissions') && in_array($permission->name, old('permissions')) ? true : false, $permission->name)--}}
+                                                      {{--->class('switch-input')--}}
+                                                      {{--->id('permission-'.$permission->id)--}}
+                                                    {{--. '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')--}}
+                                                {{--->class('switch switch-label switch-pill switch-primary mr-2')--}}
+                                            {{--->for('permission-'.$permission->id) }}--}}
+                                        {{--{{ html()->label(ucwords($permission->name))->for('permission-'.$permission->id) }}--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--@endif--}}
                         </div><!--col-->
                     </div><!--form-group-->
                 </div><!--col-->

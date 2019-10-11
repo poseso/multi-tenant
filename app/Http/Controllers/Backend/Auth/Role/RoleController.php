@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Auth\Role;
 
+use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
 use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\Role\RoleDeleted;
@@ -57,8 +58,12 @@ class RoleController extends Controller
      */
     public function create(ManageRoleRequest $request)
     {
+        $permissions = Permission::with('module')->orderBy('permissions.display_name', 'ASC')->get();
+        $permissions = $permissions->groupBy('module.name');
+//        dd($permissions->toArray());
+
         return view('backend.auth.role.create')
-            ->withPermissions($this->permissionRepository->get());
+            ->withPermissions($permissions);
     }
 
     /**
