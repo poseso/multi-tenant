@@ -23,13 +23,12 @@ class PermissionRoleTableSeeder extends Seeder
         $permissions = Permission::defaultPermissions();
 
         foreach ($permissions as $perms) {
-            foreach ($perms['name'] as $name) {
-                $display = array_shift($perms['display_name']);
+            foreach ($perms['name'] as $key => $name) {
 
                 Permission::firstOrCreate( [
                     'module_id'    => $perms['module_id'],
                     'name'         => $name,
-                    'display_name' => $display,
+                    'display_name' => $perms['display_name'][$key],
                 ] );
             }
         }
