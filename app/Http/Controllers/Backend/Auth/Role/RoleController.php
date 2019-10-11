@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend\Auth\Role;
 
-use App\Models\Auth\Permission;
 use App\Models\Auth\Role;
+use App\Models\Auth\Permission;
 use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\Role\RoleDeleted;
 use App\Repositories\Backend\Auth\RoleRepository;
