@@ -12,83 +12,6 @@
 
 namespace App\Models\Auth{
 /**
- * App\Models\Auth\Module
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
- * @property-read int|null $ledgers_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module query()
- */
-	class Module extends \Eloquent {}
-}
-
-namespace App\Models\Auth{
-/**
- * Class PasswordHistory.
- *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory query()
- */
-	class PasswordHistory extends \Eloquent {}
-}
-
-namespace App\Models\Auth{
-/**
- * Class Permission.
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
- * @property-read int|null $ledgers_count
- * @property-read \App\Models\Auth\Module $module
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Permission[] $permissions
- * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Role[] $roles
- * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\User[] $users
- * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission permission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission query()
- * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission role($roles, $guard = null)
- */
-	class Permission extends \Eloquent {}
-}
-
-namespace App\Models\Auth{
-/**
- * Class Role.
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
- * @property-read int|null $ledgers_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Permission[] $permissions
- * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\User[] $users
- * @property-read int|null $users_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Role permission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role query()
- */
-	class Role extends \Eloquent {}
-}
-
-namespace App\Models\Auth{
-/**
- * Class SocialAccount.
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
- * @property-read int|null $ledgers_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount query()
- */
-	class SocialAccount extends \Eloquent {}
-}
-
-namespace App\Models\Auth{
-/**
  * Class User.
  *
  * @property-read string $full_name
@@ -119,5 +42,82 @@ namespace App\Models\Auth{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\BaseUser uuid($uuid)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models\Auth{
+/**
+ * Class Role.
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
+ * @property-read int|null $ledgers_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Role permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Role query()
+ */
+	class Role extends \Eloquent {}
+}
+
+namespace App\Models\Auth{
+/**
+ * App\Models\Auth\Module
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
+ * @property-read int|null $ledgers_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Module query()
+ */
+	class Module extends \Eloquent {}
+}
+
+namespace App\Models\Auth{
+/**
+ * Class Permission.
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
+ * @property-read int|null $ledgers_count
+ * @property-read \App\Models\Auth\Module $module
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\Role[] $roles
+ * @property-read int|null $roles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Auth\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\Permission query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Spatie\Permission\Models\Permission role($roles, $guard = null)
+ */
+	class Permission extends \Eloquent {}
+}
+
+namespace App\Models\Auth{
+/**
+ * Class PasswordHistory.
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\PasswordHistory query()
+ */
+	class PasswordHistory extends \Eloquent {}
+}
+
+namespace App\Models\Auth{
+/**
+ * Class SocialAccount.
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Altek\Accountant\Models\Ledger[] $ledgers
+ * @property-read int|null $ledgers_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Auth\SocialAccount query()
+ */
+	class SocialAccount extends \Eloquent {}
 }
 

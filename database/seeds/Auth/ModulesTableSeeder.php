@@ -21,7 +21,7 @@ class ModulesTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Roles',
+                'name' => 'Perfiles',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

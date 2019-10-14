@@ -109,7 +109,7 @@
                 <a href="javascript:;" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/auth/role*')) }}">
                     <i class="kt-menu__link-icon flaticon-safe-shield-protection"></i>
                     <span class="kt-menu__link-text">
-                        {{ __('Administración de Roles') }}
+                        {{ __('Administración de Perfiles') }}
                     </span>
                     <i class="kt-menu__ver-arrow la la-angle-right"></i>
                 </a>
@@ -124,7 +124,7 @@
                                 </i>
 
                                 <span class="kt-menu__link-text">
-                                    {{ __('Listado de Roles') }}
+                                    {{ __('Listado de Perfiles') }}
                                 </span>
                             </a>
                         </li>
@@ -136,7 +136,7 @@
                                 </i>
 
                                 <span class="kt-menu__link-text">
-                                    {{ __('Nuevo Rol') }}
+                                    {{ __('Nuevo Perfil') }}
                                 </span>
                             </a>
                         </li>

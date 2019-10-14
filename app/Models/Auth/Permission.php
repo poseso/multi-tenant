@@ -31,10 +31,10 @@ class Permission extends SpatiePermission implements Recordable
                 'users.delete',
             ],
             'display_name' => [
-                'Crear usuarios',
-                'Ver usuarios',
-                'Modificar usuarios',
-                'Eliminar usuarios',
+                'Crear Usuarios',
+                'Ver Usuarios',
+                'Modificar Usuarios',
+                'Eliminar Usuarios',
             ],
             'module_id' => 1,
         ];
@@ -47,10 +47,10 @@ class Permission extends SpatiePermission implements Recordable
                 'roles.delete',
             ],
             'display_name' => [
-                'Crear perfiles',
-                'Ver perfiles',
-                'Modificar perfiles',
-                'Eliminar perfiles',
+                'Crear Perfiles',
+                'Ver Perfiles',
+                'Modificar Perfiles',
+                'Eliminar Perfiles',
             ],
             'module_id' => 2,
         ];
@@ -60,7 +60,7 @@ class Permission extends SpatiePermission implements Recordable
                 'dashboard.read',
             ],
             'display_name' => [
-                'Ver panel principal',
+                'Ver Tablero Principal',
             ],
             'module_id' => 3,
         ];

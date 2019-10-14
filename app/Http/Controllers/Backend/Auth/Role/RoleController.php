@@ -58,7 +58,7 @@ class RoleController extends Controller
      */
     public function create(ManageRoleRequest $request)
     {
-        $permissions = Permission::with('module')->orderBy('permissions.display_name', 'ASC')->get();
+        $permissions = Permission::with('module')->orderBy('permissions.id', 'ASC')->get();
         $permissions = $permissions->groupBy('module.name');
 //        dd($permissions->toArray());
 

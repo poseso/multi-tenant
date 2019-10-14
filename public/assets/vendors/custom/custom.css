@@ -3909,3 +3909,29 @@ input[readonly] {
 table.dataTable tbody tr.selected a, table.dataTable tbody th.selected a, table.dataTable tbody td.selected a {
     color: #969696;
 }
+
+.kt-switch input:empty ~ span:after {
+    color: #a2a2a2 !important;
+}
+
+.checkboxes label {
+    display: block;
+    padding-top: 4px;
+    white-space: nowrap;
+}
+.checkboxes input {
+    vertical-align: middle;
+}
+.checkboxes label span {
+    vertical-align: middle;
+}
+
+.table-permissions {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
