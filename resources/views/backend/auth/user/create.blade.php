@@ -192,15 +192,16 @@
                                         <td>
                                             @if($permissions->count())
                                                 @foreach($permissions as $permission)
-                                                    <div class="checkbox d-flex align-items-center">
-                                                        {{ html()->label(
+                                                    <div class="checkboxes">
+                                                        <span class="kt-switch kt-switch--sm kt-switch--icon" style="display: block !important;">
+                                                            {{ html()->label(
                                                                 html()->checkbox('permissions[]', old('permissions') && in_array($permission->display_name, old('permissions')) ? true : false, $permission->display_name)
-                                                                      ->class('switch-input')
+                                                                      ->class('checkAll')
                                                                       ->id('permission-'.$permission->id)
-                                                                    . '<span class="switch-slider" data-checked="on" data-unchecked="off"></span>')
-                                                                ->class('switch switch-label switch-pill switch-primary mr-2')
-                                                            ->for('permission-'.$permission->id) }}
-                                                        {{ html()->label(ucwords($permission->display_name))->for('permission-'.$permission->id) }}
+                                                                      . '<span></span>')
+                                                                      ->for('permission-'.$permission->id) }}
+                                                            &nbsp;&nbsp;{{ $permission->display_name }}
+                                                        </span>
                                                     </div>
                                                 @endforeach
                                             @endif
@@ -211,28 +212,6 @@
                             </div>
                         </div><!--col-->
                     </div><!--form-group-->
-
-                    {{--<div class="form-group row {{ $errors->has('profile') ? ' has-danger' : '' }}">--}}
-                        {{--{{ html()->label(__('Perfil de Seguridad'))->class('col-md-2 mt-3')->for('profile') }}--}}
-
-                        {{--<div class="col-md-10">--}}
-                            {{--<select name="profile" id="profile" class="form-control select2" data-placeholder="{{ __('Seleccione Perfil de Seguridad...') }}">--}}
-                                {{--<option value=""></option>--}}
-                                {{--@foreach($profiles as $profile)--}}
-                                    {{--@if(old('profile') == $profile->id)--}}
-                                        {{--<option value="{{ $profile->id }}" selected>{{ $profile->description }}</option>--}}
-                                    {{--@else--}}
-                                        {{--<option value="{{ $profile->id }}">{{ $profile->description }}</option>--}}
-                                    {{--@endif--}}
-                                {{--@endforeach--}}
-                            {{--</select>--}}
-                            {{--@if ($errors->has('profile'))--}}
-                                {{--<span class="form-text text-danger">--}}
-                                    {{--{{ $errors->first('profile') }}--}}
-                                {{--</span>--}}
-                            {{--@endif--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
                 </div><!--col-->
             </div><!--row-->
         </div>
