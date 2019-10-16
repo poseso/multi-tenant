@@ -35,7 +35,7 @@ class RoleRepository extends BaseRepository
     {
         // Make sure it doesn't already exist
         if ($this->roleExists($data['name'])) {
-            throw new GeneralException('A role already exists with the name '.e($data['name']));
+            throw new GeneralException('Ya existe un perfil con el nombre '.e($data['name']));
         }
 
         if (! isset($data['permissions']) || ! \count($data['permissions'])) {
@@ -44,7 +44,7 @@ class RoleRepository extends BaseRepository
 
         //See if the role must contain a permission as per config
         if (config('access.roles.role_must_contain_permission') && \count($data['permissions']) === 0) {
-            throw new GeneralException(__('exceptions.backend.access.roles.needs_permission'));
+            throw new GeneralException(__('Debe seleccionar al menos un permiso para cada Perfil.'));
         }
 
         return DB::transaction(function () use ($data) {
@@ -58,7 +58,7 @@ class RoleRepository extends BaseRepository
                 return $role;
             }
 
-            throw new GeneralException(trans('exceptions.backend.access.roles.create_error'));
+            throw new GeneralException(__('Hubo un problema al crear el Perfil. Inténtelo de nuevo.'));
         });
     }
 
@@ -73,13 +73,13 @@ class RoleRepository extends BaseRepository
     public function update(Role $role, array $data)
     {
         if ($role->isAdmin()) {
-            throw new GeneralException('You can not edit the administrator role.');
+            throw new GeneralException(__('No puedes modificar el perfil de administrador.'));
         }
 
         // If the name is changing make sure it doesn't already exist
         if ($role->name !== strtolower($data['name'])) {
             if ($this->roleExists($data['name'])) {
-                throw new GeneralException('A role already exists with the name '.$data['name']);
+                throw new GeneralException('Ya existe un perfil con el nombre '.$data['name']);
             }
         }
 
@@ -89,7 +89,7 @@ class RoleRepository extends BaseRepository
 
         //See if the role must contain a permission as per config
         if (config('access.roles.role_must_contain_permission') && \count($data['permissions']) === 0) {
-            throw new GeneralException(__('exceptions.backend.access.roles.needs_permission'));
+            throw new GeneralException(__('Debe seleccionar al menos un permiso para cada Perfil.'));
         }
 
         return DB::transaction(function () use ($role, $data) {
@@ -103,7 +103,7 @@ class RoleRepository extends BaseRepository
                 return $role;
             }
 
-            throw new GeneralException(trans('exceptions.backend.access.roles.update_error'));
+            throw new GeneralException(__('Hubo un problema al modificar el Perfil. Inténtelo de nuevo.'));
         });
     }
 

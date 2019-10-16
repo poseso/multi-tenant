@@ -49,7 +49,7 @@ class UpdateRoleTest extends TestCase
         $role = factory(Role::class)->create();
         $this->loginAsAdmin();
 
-        $this->patch("/admin/auth/role/{$role->id}", ['name' => 'new name', 'permissions' => ['view backend']]);
+        $this->patch("/admin/auth/role/{$role->id}", ['name' => 'new name', 'permissions' => ['dashboard.read']]);
 
         $this->assertSame('new name', $role->fresh()->name);
     }
@@ -61,7 +61,7 @@ class UpdateRoleTest extends TestCase
         Event::fake();
         $this->loginAsAdmin();
 
-        $this->patch("/admin/auth/role/{$role->id}", ['name' => 'new name', 'permissions' => ['view backend']]);
+        $this->patch("/admin/auth/role/{$role->id}", ['name' => 'new name', 'permissions' => ['dashboard.read']]);
 
         Event::assertDispatched(RoleUpdated::class);
     }

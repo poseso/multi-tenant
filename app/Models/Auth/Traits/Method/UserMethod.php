@@ -26,8 +26,6 @@ trait UserMethod
     /**
      * @param bool $size
      *
-     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
-     * @throws \Illuminate\Container\EntryNotFoundException
      * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      */
     public function getPicture($size = false)

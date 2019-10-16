@@ -46,8 +46,11 @@ trait UserAttribute
         return $this->full_name;
     }
 
+
     /**
      * @return mixed
+     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
+     * @throws \Illuminate\Container\EntryNotFoundException
      */
     public function getPictureAttribute()
     {

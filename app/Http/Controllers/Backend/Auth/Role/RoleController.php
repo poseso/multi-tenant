@@ -60,7 +60,6 @@ class RoleController extends Controller
     {
         $permissions = Permission::with('module')->orderBy('permissions.id', 'ASC')->get();
         $permissions = $permissions->groupBy('module.name');
-//        dd($permissions->toArray());
 
         return view('backend.auth.role.create')
             ->withPermissions($permissions);
@@ -77,7 +76,7 @@ class RoleController extends Controller
     {
         $this->roleRepository->create($request->only('name', 'associated-permissions', 'permissions', 'sort'));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol creado correctamente.'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Perfil creado correctamente.'));
     }
 
     /**
@@ -89,7 +88,7 @@ class RoleController extends Controller
     public function edit(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
-            return redirect()->route('admin.auth.role.index')->withFlashDanger('No puedes modificar el Rol de Administrador.');
+            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puedes modificar el Perfil de Administrador.'));
         }
 
         return view('backend.auth.role.edit')
@@ -110,7 +109,7 @@ class RoleController extends Controller
     {
         $this->roleRepository->update($role, $request->only('name', 'permissions'));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol actualizado correctamente.'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Perfil actualizado correctamente.'));
     }
 
     /**
@@ -123,13 +122,13 @@ class RoleController extends Controller
     public function destroy(ManageRoleRequest $request, Role $role)
     {
         if ($role->isAdmin()) {
-            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puede eliminar el Rol de Administrador.'));
+            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puede eliminar el Perfil de Administrador.'));
         }
 
         $this->roleRepository->deleteById($role->id);
 
         event(new RoleDeleted($role));
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Rol eliminado correctamente.'));
+        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('Perfil eliminado correctamente.'));
     }
 }

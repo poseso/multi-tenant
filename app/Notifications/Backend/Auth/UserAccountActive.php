@@ -36,8 +36,8 @@ class UserAccountActive extends Notification
     {
         return (new MailMessage())
             ->subject(app_name())
-            ->line(__('strings.emails.auth.account_confirmed'))
-            ->action(__('labels.frontend.auth.login_button'), route('frontend.auth.login'))
-            ->line(__('strings.emails.auth.thank_you_for_using_app'));
+            ->line(__('Su cuenta ha sido confirmada.'))
+            ->action(__('Iniciar Sesión'), route('frontend.auth.login'))
+            ->line(__('¡Gracias por utilizar nuestra aplicación!'));
     }
 }

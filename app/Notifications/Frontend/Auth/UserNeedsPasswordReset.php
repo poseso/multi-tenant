@@ -52,9 +52,9 @@ class UserNeedsPasswordReset extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-            ->subject(app_name().': '.__('strings.emails.auth.password_reset_subject'))
-            ->line(__('strings.emails.auth.password_cause_of_email'))
-            ->action(__('buttons.emails.auth.reset_password'), route('frontend.auth.password.reset.form', $this->token))
-            ->line(__('strings.emails.auth.password_if_not_requested'));
+            ->subject(app_name().': '.__('Su enlace de reinicio de contraseña'))
+            ->line(__('Ha recibido este correo porque hemos recibido una solicitud de reinicio de contraseña para su cuenta.'))
+            ->action(__('Resetear Contraseña'), route('frontend.auth.password.reset.form', $this->token))
+            ->line(__('Si usted no hizo la solicitud, no haga nada.'));
     }
 }

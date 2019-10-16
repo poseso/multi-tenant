@@ -151,7 +151,7 @@ class UserRepository extends BaseRepository
             if ($user) {
                 // User must have at least one role
                 if (! count($data['roles'])) {
-                    throw new GeneralException(__('exceptions.backend.access.users.role_needed_create'));
+                    throw new GeneralException(__('Los Usuarios deben tener al menos un Perfil.'));
                 }
 
                 // Add selected roles/permissions
@@ -168,7 +168,7 @@ class UserRepository extends BaseRepository
                 return $user;
             }
 
-            throw new GeneralException(__('exceptions.backend.access.users.create_error'));
+            throw new GeneralException(__('Hubo un problema al crear el Usuario. Inténtelo de nuevo.'));
         });
     }
 
@@ -205,7 +205,7 @@ class UserRepository extends BaseRepository
                 return $user;
             }
 
-            throw new GeneralException(__('exceptions.backend.access.users.update_error'));
+            throw new GeneralException(__('Hubo un problema al modificar el Usuario. Inténtelo de nuevo.'));
         });
     }
 
@@ -224,7 +224,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.update_password_error'));
+        throw new GeneralException(__('Hubo un problema al cambiar la contraseña. Inténtelo de nuevo.'));
     }
 
     /**
@@ -237,7 +237,7 @@ class UserRepository extends BaseRepository
     public function mark(User $user, $status) : User
     {
         if ($status === 0 && auth()->id() === $user->id) {
-            throw new GeneralException(__('exceptions.backend.access.users.cant_deactivate_self'));
+            throw new GeneralException(__('No puede desactivarse a sí mismo.'));
         }
 
         $user->active = $status;
@@ -258,7 +258,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.mark_error'));
+        throw new GeneralException(__('Hubo un problema al modificar el Usuario. Inténtelo de nuevo.'));
     }
 
     /**
@@ -270,7 +270,7 @@ class UserRepository extends BaseRepository
     public function confirm(User $user) : User
     {
         if ($user->confirmed) {
-            throw new GeneralException(__('exceptions.backend.access.users.already_confirmed'));
+            throw new GeneralException(__('Este Usuario ya fue confirmado.'));
         }
 
         $user->confirmed = true;
@@ -287,7 +287,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.cant_confirm'));
+        throw new GeneralException(__('Hubo un problema al confirmar la cuenta de Usuario.'));
     }
 
     /**
@@ -299,17 +299,17 @@ class UserRepository extends BaseRepository
     public function unconfirm(User $user) : User
     {
         if (! $user->confirmed) {
-            throw new GeneralException(__('exceptions.backend.access.users.not_confirmed'));
+            throw new GeneralException(__('Este Usuario no está confirmado.'));
         }
 
         if ($user->id === 1) {
             // Cant un-confirm admin
-            throw new GeneralException(__('exceptions.backend.access.users.cant_unconfirm_admin'));
+            throw new GeneralException(__('No puede anular la confirmación del administrador.'));
         }
 
         if ($user->id === auth()->id()) {
             // Cant un-confirm self
-            throw new GeneralException(__('exceptions.backend.access.users.cant_unconfirm_self'));
+            throw new GeneralException(__('No puede anular su propia confirmación.'));
         }
 
         $user->confirmed = false;
@@ -321,7 +321,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.cant_unconfirm'));
+        throw new GeneralException(__('Hubo un error al desconfirmar el usuario. Inténtelo de nuevo.'));
     }
 
     /**
@@ -335,7 +335,7 @@ class UserRepository extends BaseRepository
     public function forceDelete(User $user) : User
     {
         if ($user->deleted_at === null) {
-            throw new GeneralException(__('exceptions.backend.access.users.delete_first'));
+            throw new GeneralException(__('Este Usuario debe ser eliminado primero antes de que pueda ser destruido permanentemente.'));
         }
 
         return DB::transaction(function () use ($user) {
@@ -349,7 +349,7 @@ class UserRepository extends BaseRepository
                 return $user;
             }
 
-            throw new GeneralException(__('exceptions.backend.access.users.delete_error'));
+            throw new GeneralException(__('Hubo un problema al eliminar el Usuario. Inténtelo de nuevo.'));
         });
     }
 
@@ -362,7 +362,7 @@ class UserRepository extends BaseRepository
     public function restore(User $user) : User
     {
         if ($user->deleted_at === null) {
-            throw new GeneralException(__('exceptions.backend.access.users.cant_restore'));
+            throw new GeneralException(__('Este Usuario no fue eliminado, por lo que no se puede restaurar.'));
         }
 
         if ($user->restore()) {
@@ -371,7 +371,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.restore_error'));
+        throw new GeneralException(__('Hubo un problema al restaurar el Usuario. Inténtelo de nuevo.'));
     }
 
     /**
@@ -384,7 +384,7 @@ class UserRepository extends BaseRepository
     {
         // Figure out if email is not the same and check to see if email exists
         if ($user->email !== $email && $this->model->where('email', '=', $email)->first()) {
-            throw new GeneralException(trans('exceptions.backend.access.users.email_error'));
+            throw new GeneralException(__('Ya hay un Usuario con la dirección de correo especificada.'));
         }
     }
 }

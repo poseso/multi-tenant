@@ -40,7 +40,7 @@ class SendContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
+            'g-recaptcha-response.required_if' => __('El campo :attribute es requerido.', ['attribute' => 'captcha']),
         ];
     }
 }

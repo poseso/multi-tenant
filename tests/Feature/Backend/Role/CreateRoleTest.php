@@ -55,11 +55,11 @@ class CreateRoleTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $this->post('/admin/auth/role', ['name' => 'new role', 'permissions' => ['view backend']]);
+        $this->post('/admin/auth/role', ['name' => 'new role', 'permissions' => ['dashboard.read']]);
 
         $role = Role::where(['name' => 'new role'])->first();
 
-        $this->assertTrue($role->hasPermissionTo('view backend'));
+        $this->assertTrue($role->hasPermissionTo('dashboard.read'));
     }
 
     /** @test */
@@ -68,7 +68,7 @@ class CreateRoleTest extends TestCase
         $this->loginAsAdmin();
         Event::fake();
 
-        $this->post('/admin/auth/role', ['name' => 'new role', 'permissions' => ['view backend']]);
+        $this->post('/admin/auth/role', ['name' => 'new role', 'permissions' => ['dashboard.read']]);
 
         Event::assertDispatched(RoleCreated::class);
     }

@@ -62,7 +62,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.not_found'));
+        throw new GeneralException(__('El Usuario requerido no existe.'));
     }
 
     /**
@@ -81,7 +81,7 @@ class UserRepository extends BaseRepository
             return $user;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.not_found'));
+        throw new GeneralException(__('El Usuario requerido no existe.'));
     }
 
     /**
@@ -150,7 +150,7 @@ class UserRepository extends BaseRepository
             if ($input['avatar_type'] === 'storage') {
                 // If there is no existing image
                 if (auth()->user()->avatar_location === '') {
-                    throw new GeneralException('You must supply a profile image.');
+                    throw new GeneralException('Debe proporcionar una imagen de perfil.');
                 }
             } else {
                 // If there is a current image, and they are not using it anymore, get rid of it
@@ -167,7 +167,7 @@ class UserRepository extends BaseRepository
             if ($user->email !== $input['email']) {
                 //Emails have to be unique
                 if ($this->getByColumn($input['email'], 'email')) {
-                    throw new GeneralException(__('exceptions.frontend.auth.email_taken'));
+                    throw new GeneralException(__('El correo especificado ya está registrado.'));
                 }
 
                 // Force the user to re-verify his email address if config is set
@@ -210,7 +210,7 @@ class UserRepository extends BaseRepository
             return $user->update(['password' => $input['password']]);
         }
 
-        throw new GeneralException(__('exceptions.frontend.auth.password.change_mismatch'));
+        throw new GeneralException(__('La contraseña antigua no coincide.'));
     }
 
     /**
@@ -224,7 +224,7 @@ class UserRepository extends BaseRepository
         $user = $this->findByConfirmationCode($code);
 
         if ($user->confirmed === true) {
-            throw new GeneralException(__('exceptions.frontend.auth.confirmation.already_confirmed'));
+            throw new GeneralException(__('Su cuenta ya ha sido verificada.'));
         }
 
         if ($user->confirmation_code === $code) {
@@ -236,7 +236,7 @@ class UserRepository extends BaseRepository
             return $user->save();
         }
 
-        throw new GeneralException(__('exceptions.frontend.auth.confirmation.mismatch'));
+        throw new GeneralException(__('El código de verificación no coincide.'));
     }
 
     /**
@@ -262,7 +262,7 @@ class UserRepository extends BaseRepository
         if (! $user) {
             // Registration is not enabled
             if (! config('access.registration')) {
-                throw new GeneralException(__('exceptions.frontend.auth.registration_disabled'));
+                throw new GeneralException(__('Los registros se encuentran actualmente cerrados.'));
             }
 
             // Get users first name and last name from their full name

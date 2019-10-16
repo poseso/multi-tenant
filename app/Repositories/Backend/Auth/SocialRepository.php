@@ -27,6 +27,6 @@ class SocialRepository
             return true;
         }
 
-        throw new GeneralException(__('exceptions.backend.access.users.social_delete_error'));
+        throw new GeneralException(__('Hubo un problema al eliminar la cuenta social del Usuario.'));
     }
 }
