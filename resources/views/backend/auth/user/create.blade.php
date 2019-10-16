@@ -36,123 +36,126 @@
             <div class="row mt-4 mb-4">
                 <div class="col">
                     <div class="form-group row">
-                        {{ html()->label(__('Nombre'))->class('col-md-2 form-control-label')->for('first_name') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Nombre'))->class('form-control-label')->for('first_name') }}
 
-                        <div class="col-md-10">
                             {{ html()->text('first_name')
                                 ->class('form-control')
-                                ->placeholder(__('Nombre'))
+                                ->placeholder(__('Escriba su Nombre'))
                                 ->attribute('maxlength', 70)
                                 ->autofocus() }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Apellidos'))->class('col-md-2 form-control-label')->for('last_name') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Apellidos'))->class('form-control-label')->for('last_name') }}
 
-                        <div class="col-md-10">
                             {{ html()->text('last_name')
                                 ->class('form-control')
-                                ->placeholder(__('Apellidos'))
+                                ->placeholder(__('Escriba sus Apellidos'))
                                 ->attribute('maxlength', 70) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Usuario'))->class('col-md-2 form-control-label')->for('username') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Usuario'))->class('form-control-label')->for('username') }}
 
-                        <div class="col-md-10">
                             {{ html()->text('username')
                                 ->class('form-control')
                                 ->placeholder(__('Usuario'))
                                 ->attribute('maxlength', 25) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Dirección de correo'))->class('col-md-2 form-control-label')->for('email') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Dirección de correo'))->class('form-control-label')->for('email') }}
 
-                        <div class="col-md-10">
                             {{ html()->email('email')
                                 ->class('form-control')
                                 ->placeholder(__('Dirección de correo'))
                                 ->attribute('maxlength', 65) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Contraseña'))->class('col-md-2 form-control-label')->for('password') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Contraseña'))->class('form-control-label')->for('password') }}
 
-                        <div class="col-md-10">
                             {{ html()->password('password')
                                 ->class('form-control')
                                 ->placeholder(__('Contraseña')) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Confirmación de la contraseña'))->class('col-md-2 form-control-label')->for('password_confirmation') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
+                            {{ html()->label(__('Confirmación de la contraseña'))->class('form-control-label')->for('password_confirmation') }}
 
-                        <div class="col-md-10">
                             {{ html()->password('password_confirmation')
                                 ->class('form-control')
                                 ->placeholder(__('Confirmación de la contraseña')) }}
-                        </div><!--col-->
-                    </div><!--form-group-->
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Activo'))->class('col-md-2 form-control-label')->for('active') }}
+                        <div class="col-xl-4 col-sm-12"></div>
+                        <div class="col-xl-4 col-sm-12">
 
-                        <div class="col-md-10">
-                            <span class="kt-switch kt-switch--sm kt-switch--icon">
-                                <label>
-                                    {{ html()->checkbox('active', true) }}
-                                    <span data-checked="yes" data-unchecked="no"></span>
-                                </label>
-                            </span>
-                        </div>
-                    </div><!--form-group-->
-
-                    <div class="form-group row">
-                        {{ html()->label(__('Confirmado'))->class('col-md-2 form-control-label')->for('confirmed') }}
-
-                        <div class="col-md-10">
-                            <span class="kt-switch kt-switch--sm kt-switch--icon">
-                                <label>
-                                    {{ html()->checkbox('confirmed', true) }}
-                                    <span data-checked="yes" data-unchecked="no"></span>
-                                </label>
-                            </span>
-                        </div>
-                    </div><!--form-group-->
-
-                    @if(! config('access.users.requires_approval'))
-                        <div class="form-group row">
-                            {{ html()->label(__('Enviar Correo de Confirmación') . '<br/>' . '<small>' .  __('Si la confirmación está desactivada') . '</small>')->class('col-md-2')->for('confirmation_email') }}
-
-                            <div class="col-md-10">
+                            <div class="checkboxes">
+                                <label for="active">{{ __('Activo') }}</label>
                                 <span class="kt-switch kt-switch--sm kt-switch--icon">
                                     <label>
-                                        {{ html()->checkbox('confirmation_email') }}
-                                        <span></span>
+                                        {{ html()->checkbox('active', true) }}
+                                        <span data-checked="yes" data-unchecked="no"></span>
                                     </label>
                                 </span>
+
+                                {{ html()->label(__('Confirmado'))->class('form-control-label mt-2')->for('confirmed') }}
+
+                                <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                    <label>
+                                        {{ html()->checkbox('confirmed', true) }}
+                                        <span data-checked="yes" data-unchecked="no"></span>
+                                    </label>
+                                </span>
+
+                                @if(! config('access.users.requires_approval'))
+                                    {{ html()->label(__('Enviar Correo de Confirmación') . '<br/>' . '<small>' .  __('Si la confirmación está desactivada') . '</small>')->for('confirmation_email') }}
+
+                                    <span class="kt-switch kt-switch--sm kt-switch--icon">
+                                        <label>
+                                            {{ html()->checkbox('confirmation_email') }}
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                @endif
                             </div>
-                        </div><!--form-group-->
-                    @endif
+                        </div>
+                        <div class="col-xl-4 col-sm-12"></div>
+                    </div>
 
                     <div class="form-group row">
-                        {{ html()->label(__('Abilidades'))->class('col-md-2 form-control-label') }}
+                        <div class="col-xl-2 col-sm-12"></div>
 
-                        <div class="col-md-10">
+                        <div class="col-xl-4 col-sm-12">
+                            <h3 class="kt-portlet__head-title">{{ __('Perfiles') }}</h3>
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>{{ __('Perfiles') }}</th>
-                                        <th>{{ __('Permisos') }}</th>
-                                    </tr>
-                                    </thead>
+                                <table class="table-permissions">
                                     <tbody>
                                     <tr>
                                         <td>
@@ -176,7 +179,11 @@
                                                             @if($role->id != 1)
                                                                 @if($role->permissions->count())
                                                                     @foreach($role->permissions as $permission)
-                                                                        <i class="fas fa-dot-circle"></i> {{ ucwords($permission->display_name) }}
+                                                                        <label class="kt-checkbox kt-checkbox--bold">
+                                                                            <input type="checkbox" checked="checked" disabled>
+                                                                            {{ ucwords($permission->display_name) }} &nbsp;
+                                                                            <span></span>
+                                                                        </label>
                                                                     @endforeach
                                                                 @else
                                                                     {{ __('Ningúno') }}
@@ -189,6 +196,18 @@
                                                 @endforeach
                                             @endif
                                         </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-12">
+                            <h3 class="kt-portlet__head-title">{{ __('Permisos') }}</h3>
+                            <div class="table-responsive">
+                                <table class="table-permissions">
+                                    <tbody>
+                                    <tr>
                                         <td>
                                             @if($permissions->count())
                                                 @foreach($permissions as $permission)
@@ -210,10 +229,12 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div><!--col-->
-                    </div><!--form-group-->
-                </div><!--col-->
-            </div><!--row-->
+                        </div>
+
+                        <div class="col-xl-2 col-sm-12"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="kt-portlet__foot">
