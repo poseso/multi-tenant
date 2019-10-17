@@ -1,18 +1,25 @@
 @if ($role->id !== 1)
-    <div class="btn-group btn-group-sm" role="group" aria-label="@lang('labels.backend.access.users.user_actions')">
-        <a href="{{ route('admin.auth.role.edit', $role) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')">
-            <i class="fas fa-edit"></i>
+    <div class="dropdown">
+        <a data-toggle="dropdown" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+            <i class="flaticon-more-1"></i>
         </a>
 
-        <a href="{{ route('admin.auth.role.destroy', $role) }}"
-           data-method="delete"
-           data-trans-button-cancel="@lang('buttons.general.cancel')"
-           data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-           data-trans-title="@lang('strings.backend.general.are_you_sure')"
-           class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.delete')">
-            <i class="fas fa-trash"></i>
-        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a href="{{ route('admin.auth.role.edit', $role) }}" class="dropdown-item">
+                {{ __('Modificar') }}
+            </a>
+
+            <a href="{{ route('admin.auth.role.destroy', $role) }}"
+               data-method="delete"
+               data-trans-button-cancel="{{ __('Cancelar') }}"
+               data-trans-button-confirm="{{ __('Eliminar') }}"
+               data-trans-title="{{ __('¿Está seguro?') }}"
+               class="dropdown-item">{{ __('Eliminar') }}
+            </a>
+        </div>
     </div>
 @else
-    N/A
+    <span class="badge badge-success bg-light-blue-a300">
+        {{ __('No Disponible') }}
+    </span>
 @endif
