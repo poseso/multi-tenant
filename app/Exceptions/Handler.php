@@ -58,9 +58,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof UnauthorizedException) {
-            return redirect()
-                ->route(home_route())
-                ->withFlashDanger(__('No está autorizado para acceder a esta sección..'));
+            return response(view('errors.403'));
         }
 
         if ($exception instanceof AuthorizationException) {

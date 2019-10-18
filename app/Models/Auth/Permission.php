@@ -16,7 +16,7 @@ class Permission extends SpatiePermission implements Recordable
 
     public function module() : BelongsTo
     {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Module::class, 'module_id');
     }
 
     public static function defaultPermissions()

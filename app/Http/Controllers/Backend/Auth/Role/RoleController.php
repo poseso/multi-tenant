@@ -44,14 +44,11 @@ class RoleController extends Controller
      */
     public function index(ManageRoleRequest $request)
     {
-        $permisos = Permission::with('module')->orderBy('permissions.id', 'ASC')->get();
-        $permisos = $permisos->groupBy('module.name');
-
-        return view('backend.auth.role.index', compact('permisos'))
+        return view('backend.auth.role.index')
             ->withRoles($this->roleRepository
             ->with('users', 'permissions')
             ->orderBy('id')
-            ->paginate());
+            ->get());
     }
 
     /**
