@@ -105,18 +105,3 @@
 {{ html()->form()->close() }}
 @endsection
 
-@push('after-scripts')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.checkAll').on('click',function(){
-                var type = $(this).attr('id');
-                var status = ( $(this).is(':checked') ) ? true : false;
-
-                $.each( $('[name$="['+type+']"]'), function(key,val){
-                    var name = $(this).attr('name');
-                    $('[name="'+name+'"]').prop('checked', status);
-                });
-            });
-        });
-    </script>
-@endpush
