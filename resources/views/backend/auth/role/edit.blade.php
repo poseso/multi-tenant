@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.edit'))
+@section('title', __('Administración de Perfiles') . ' | ' . __('Modificar Perfil') . ' | ' . app_name())
 
 @section('content')
 {{ html()->modelForm($role, 'PATCH', route('admin.auth.role.update', $role))->class('form-horizontal')->open() }}
