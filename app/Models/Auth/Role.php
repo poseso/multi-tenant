@@ -4,10 +4,9 @@ namespace App\Models\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
 use App\Models\Auth\Traits\Method\RoleMethod;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Altek\Accountant\Recordable as RecordableTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Role.

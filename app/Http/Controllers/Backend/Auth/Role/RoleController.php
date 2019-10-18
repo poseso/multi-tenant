@@ -44,11 +44,22 @@ class RoleController extends Controller
      */
     public function index(ManageRoleRequest $request)
     {
+        $roles = $this->roleRepository->with('users', 'permissions')->orderBy('id')->get();
+
+        foreach($roles as $role) {
+            $perm = [];
+            foreach ( $role->permissions as $permission ) {
+                if ( ! isset( $perm[ $permission->module->name ] ) ) {
+                    $perm[ $permission->module->name ] = [];
+                }
+
+                $perm[ $permission->module->name ][] = $permission->display_name;
+            }
+        }
+
         return view('backend.auth.role.index')
-            ->withRoles($this->roleRepository
-            ->with('users', 'permissions')
-            ->orderBy('id')
-            ->get());
+            ->withRoles($roles)
+            ->withPerm($perm);
     }
 
     /**

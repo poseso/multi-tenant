@@ -39,16 +39,6 @@
 
                 <tbody>
                 @foreach($roles as $role)
-                    <?php
-                    $perm = [];
-                    foreach($role->permissions as $permission){
-                        if( !isset($perm[$permission->module->name])) {
-                            $perm[$permission->module->name] = [];
-                        }
-
-                        $perm[$permission->module->name][] = $permission->display_name;
-                    }
-                    ?>
                     <tr>
                         <td>{{ ucwords($role->name) }}</td>
                         <td>
@@ -57,7 +47,7 @@
                             @else
                                 @if($role->permissions->count())
                                     @foreach($perm as $modulo => $permisos)
-                                        {{ $modulo }} ( {{ implode(', ', $permisos) }})<br />
+                                        <strong style="font-weight: 500;">{{ $modulo }}</strong> ({{ implode(', ', $permisos) }})<br />
                                     @endforeach
                                 @else
                                     {{ __('Ninguno') }}
