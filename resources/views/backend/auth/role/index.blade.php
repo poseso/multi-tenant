@@ -54,7 +54,7 @@
                                 @endif
                             @endif
                         </td>
-                        <td>{{ $role->users->count() }}</td>
+                        <td>{{ $role->users->count() }} {{ trans_choice('{1} Usuario|[2,*] Usuarios', $role->users->count()) }}</td>
                         <td>@include('backend.auth.role.includes.actions', ['role' => $role])</td>
                     </tr>
                 @endforeach
