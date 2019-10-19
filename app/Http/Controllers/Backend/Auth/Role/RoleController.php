@@ -102,10 +102,13 @@ class RoleController extends Controller
             return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puedes modificar el Perfil de Administrador.'));
         }
 
+        $permissions = Permission::with('module')->orderBy('permissions.id', 'ASC')->get();
+        $permissions = $permissions->groupBy('module.name');
+
         return view('backend.auth.role.edit')
             ->withRole($role)
             ->withRolePermissions($role->permissions->pluck('name')->all())
-            ->withPermissions($this->permissionRepository->get());
+            ->withPermissions($permissions);
     }
 
     /**

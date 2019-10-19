@@ -9,7 +9,7 @@
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
             <span class="kt-portlet__head-icon">
-                <i class="kt-font-brand kt-menu__link-icon flaticon-users-1"></i>
+                <i class="kt-font-brand kt-menu__link-icon flaticon-lock"></i>
             </span>
 
                 <h3 class="kt-portlet__head-title">
@@ -67,15 +67,14 @@
                                         <tr>
                                             <td>
                                                 <div class="checkboxes">
-                                                <span class="kt-switch kt-switch--sm kt-switch--icon" style="display: block !important;">
-                                                    {{ html()->label(
-                                                        html()->checkbox('permissions[]', old('permissions') && in_array($permission->display_name, old('permissions')) ? true : false, $permission->display_name)
-                                                              ->class('checkAll')
-                                                              ->id('permission-'.$permission->id)
-                                                              . '<span></span>')
-                                                              ->for('permission-'.$permission->id) }}
-                                                    &nbsp;&nbsp;{{ $permission->display_name }}
-                                                </span>
+                                                    <span class="kt-switch kt-switch--sm kt-switch--icon" style="display: block !important;">
+                                                        {{ html()->label(
+                                                            html()->checkbox('permissions[]', old('permissions') && in_array($permission->display_name, old('permissions')) ? true : false, $permission->display_name)
+                                                                  ->id('permission-'.$permission->id)
+                                                                  . '<span></span>')
+                                                                  ->for('permission-'.$permission->id) }}
+                                                        {{ $permission->display_name }}
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>
