@@ -5,12 +5,12 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right">
-            <a href="{{ route('admin.auth.user.restore', $user) }}" name="confirm_item" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="@lang('buttons.backend.access.users.restore_user')">
-                <i class="fas fa-sync"></i>
+            <a href="{{ route('admin.auth.user.restore', $user) }}" name="confirm_item" class="dropdown-item">
+                {{ __('Restaurar') }}
             </a>
 
-            <a href="{{ route('admin.auth.user.delete-permanently', $user) }}" name="confirm_item" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="@lang('buttons.backend.access.users.delete_permanently')">
-                <i class="fas fa-trash"></i>
+            <a href="{{ route('admin.auth.user.delete-permanently', $user) }}" name="confirm_item" class="dropdown-item">
+                {{ __('Eliminar Permanentemente') }}
             </a>
         </div>
     </div>

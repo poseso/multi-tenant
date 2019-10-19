@@ -24,7 +24,7 @@ class UserEventListener
      */
     public function onCreated($event)
     {
-        logger(__("Usuario $event->username Creado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Creado'));
     }
 
     /**
@@ -32,7 +32,7 @@ class UserEventListener
      */
     public function onUpdated($event)
     {
-        logger(__("Usuario $event->username Actualizado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Actualizado'));
     }
 
     /**
@@ -40,7 +40,7 @@ class UserEventListener
      */
     public function onDeleted($event)
     {
-        logger(__("Usuario $event->username Eliminado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Eliminado'));
     }
 
     /**
@@ -48,7 +48,7 @@ class UserEventListener
      */
     public function onConfirmed($event)
     {
-        logger(__("Usuario $event->username Confirmado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Confirmado'));
     }
 
     /**
@@ -56,7 +56,7 @@ class UserEventListener
      */
     public function onUnconfirmed($event)
     {
-        logger(__("Usuario $event->username desconfirmado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Desconfirmado'));
     }
 
     /**
@@ -64,7 +64,7 @@ class UserEventListener
      */
     public function onPasswordChanged($event)
     {
-        logger(__("Contraseña actualizada para $event->username"));
+        logger(__('Contraseña Actualizada Para '. $event->user->full_name));
     }
 
     /**
@@ -72,7 +72,7 @@ class UserEventListener
      */
     public function onDeactivated($event)
     {
-        logger(__("Usuario $event->username Desactivado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Desactivado'));
     }
 
     /**
@@ -80,7 +80,7 @@ class UserEventListener
      */
     public function onReactivated($event)
     {
-        logger(__("Usuario $event->username Reactivado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Reactivado'));
     }
 
     /**
@@ -88,7 +88,7 @@ class UserEventListener
      */
     public function onSocialDeleted($event)
     {
-        logger(__("Cuenta Social $event->full_name Eliminada"));
+        logger(__('Cuenta Social '. $event->user->full_name .' '. 'Eliminada'));
     }
 
     /**
@@ -96,7 +96,7 @@ class UserEventListener
      */
     public function onPermanentlyDeleted($event)
     {
-        logger(__("Usuario $event->username Eliminado Permanentemente"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Eliminado Permanentemente'));
     }
 
     /**
@@ -104,7 +104,7 @@ class UserEventListener
      */
     public function onRestored($event)
     {
-        logger(__("Usuario $event->username Restaurado"));
+        logger(__('Usuario '. $event->user->full_name .' '. 'Restaurado'));
     }
 
     /**
