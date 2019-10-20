@@ -5,5 +5,5 @@
         </a>
     @endforeach
 @else
-    {{ __('Ningúno') }}
+    <span class='badge badge-success bg-red-600'>{{ __('Ningúno') }}</span>
 @endif

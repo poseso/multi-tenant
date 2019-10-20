@@ -69,7 +69,7 @@ class UserController extends Controller
                 return "<span class='badge badge-success bg-light-blue-a300'>$user->roles_label</span>";
             })
             ->addColumn('permissions', function ($user) {
-                return $user->permissions_label;
+                return "<span class='badge badge-success bg-yellow-900'>$user->permissions_label</span>";
             })
             ->addColumn('actions', function ($user) {
                 return view('backend.auth.user.includes.actions', ['user' => $user]);

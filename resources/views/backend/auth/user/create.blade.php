@@ -107,7 +107,7 @@
                             <span class="kt-switch kt-switch--sm kt-switch--icon">
                                 <label>
                                     {{ html()->checkbox('active', true) }}
-                                    <span data-checked="yes" data-unchecked="no"></span>
+                                    <span></span>
                                 </label>
                             </span>
                         </div>
@@ -120,7 +120,7 @@
                             <span class="kt-switch kt-switch--sm kt-switch--icon">
                                 <label>
                                     {{ html()->checkbox('confirmed', true) }}
-                                    <span data-checked="yes" data-unchecked="no"></span>
+                                    <span></span>
                                 </label>
                             </span>
                         </div>
@@ -178,10 +178,10 @@
                                                                         </label>
                                                                     @endforeach
                                                                 @else
-                                                                    {{ __('Ningúno') }}
+                                                                    <span class='badge badge-success bg-red-600'>{{ __('Ningúno') }}</span>
                                                                 @endif
                                                             @else
-                                                                {{ __('Todos los permisos') }}
+                                                                <span class='badge badge-success bg-light-blue-a300'>{{ __('Todos los permisos') }}</span>
                                                             @endif
                                                         </div>
                                                     </div>

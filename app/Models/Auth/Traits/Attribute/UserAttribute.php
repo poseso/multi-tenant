@@ -82,7 +82,7 @@ trait UserAttribute
 
         if (\count($permissions)) {
             return implode(', ', array_map(function ($item) {
-                return ucwords($item['name']);
+                return ucwords($item['display_name']);
             }, $permissions));
         }
 

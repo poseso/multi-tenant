@@ -2,50 +2,56 @@
     <div class="table-responsive">
         <table class="table table-hover">
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.avatar')</th>
-                <td><img src="{{ $user->picture }}" class="user-profile-image" /></td>
+                <th>{{ __('Avatar') }}</th>
+                <td><img src="{{ $user->picture }}" class="kt-widget__media" alt="Avatar"/></td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.name')</th>
+                <th>{{ __('Nombre') }}</th>
                 <td>{{ $user->name }}</td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.email')</th>
+                <th>{{ __('Dirección de Correo') }}</th>
                 <td>{{ $user->email }}</td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.status')</th>
+                <th>{{ __('Estado') }}</th>
                 <td>@include('backend.auth.user.includes.status', ['user' => $user])</td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.confirmed')</th>
+                <th>{{ __('Confirmado') }}</th>
                 <td>@include('backend.auth.user.includes.confirm', ['user' => $user])</td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.timezone')</th>
+                <th>{{ __('Zona Horaria') }}</th>
                 <td>{{ $user->timezone }}</td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.last_login_at')</th>
+                <th>{{ __('Último Inicio de Sesión') }}</th>
                 <td>
                     @if($user->last_login_at)
                         {{ timezone()->convertToLocal($user->last_login_at) }}
                     @else
-                        N/A
+                        <span class='badge badge-success bg-light-blue-a300'>{{ __('No Disponible') }}</span>
                     @endif
                 </td>
             </tr>
 
             <tr>
-                <th>@lang('labels.backend.access.users.tabs.content.overview.last_login_ip')</th>
-                <td>{{ $user->last_login_ip ?? 'N/A' }}</td>
+                <th>{{ __('IP Último Inicio de Sesión') }}</th>
+                <td>
+                    @if ($user->last_login_ip)
+                        {{ $user->last_login_ip }}
+                    @else
+                        <span class='badge badge-success bg-light-blue-a300'>{{ __('No Disponible') }}</span>
+                    @endif
+                </td>
             </tr>
         </table>
     </div>
-</div><!--table-responsive-->
+</div>
