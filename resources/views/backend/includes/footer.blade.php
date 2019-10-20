@@ -9,11 +9,11 @@
 
     <div class="kt-footer__menu">
         <a href="http://modocreativo.net" target="_blank" class="kt-footer__menu-link kt-link">
-            About
+            {{ __('Términos de uso') }}
         </a>
 
         <a href="http://modocreativo.net" target="_blank" class="kt-footer__menu-link kt-link">
-            Team
+            {{ __('Políticas de Privacidad') }}
         </a>
 
         <a href="{{ route('frontend.contact') }}" target="_blank" class="kt-footer__menu-link kt-link">

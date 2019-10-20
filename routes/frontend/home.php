@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
+use App\Http\Controllers\Backend\Settings\SettingsController;
 
 /*
  * Frontend Controllers
@@ -28,9 +29,10 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // User Account Specific
-        Route::get('account', [AccountController::class, 'index'])->name('account');
+        Route::get('account', [AccountController::class, 'index'])->name('account')->middleware('permission:settings.read');
 
         // User Profile Specific
         Route::patch('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::patch('profile/update/settings', [SettingsController::class, 'updateUserSettings'])->name('profile.update.settings');
     });
 });

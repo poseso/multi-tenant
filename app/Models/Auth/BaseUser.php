@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use Poseso\Settings\Traits\HasSettings;
 use App\Models\Traits\Uuid;
 use Altek\Eventually\Eventually;
 use Spatie\Permission\Traits\HasRoles;
@@ -22,6 +23,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         Eventually,
         Impersonate,
         Notifiable,
+        HasSettings,
         RecordableTrait,
         SendUserPasswordReset,
         SoftDeletes,

@@ -28,7 +28,7 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $user = Auth::user();
-        Settings::scope($user)->set('representante', Auth::user()->fullname);
+        Settings::scope($user)->set('representante', Auth::user()->full_name);
 
         return route(home_route());
     }

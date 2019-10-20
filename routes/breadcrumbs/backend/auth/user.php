@@ -33,3 +33,7 @@ Breadcrumbs::for('admin.auth.user.change-password', function ($trail, $id) {
     $trail->parent('admin.auth.user.index');
     $trail->push(__('menus.backend.access.users.change-password'), route('admin.auth.user.change-password', $id));
 });
+
+Breadcrumbs::for('frontend.user.account', function ($trail) {
+    $trail->push(__('Mi Cuenta'), route('frontend.user.account'));
+});
