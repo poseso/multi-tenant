@@ -2,8 +2,8 @@
 
 namespace App\Models\Tipos;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\GlobalScopeTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**

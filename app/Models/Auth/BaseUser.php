@@ -2,10 +2,10 @@
 
 namespace App\Models\Auth;
 
-use Poseso\Settings\Traits\HasSettings;
 use App\Models\Traits\Uuid;
 use Altek\Eventually\Eventually;
 use Spatie\Permission\Traits\HasRoles;
+use Poseso\Settings\Traits\HasSettings;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;

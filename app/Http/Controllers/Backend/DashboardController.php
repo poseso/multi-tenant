@@ -20,6 +20,6 @@ class DashboardController extends Controller
         $setting = $settings;
         $permissions = Permission::with('module')->selectRaw('module_id')->groupBy('module_id')->get();
 
-        return view('backend.dashboard', compact('permissions','setting'));
+        return view('backend.dashboard', compact('permissions', 'setting'));
     }
 }
