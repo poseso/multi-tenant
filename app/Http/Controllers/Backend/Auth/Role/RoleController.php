@@ -46,10 +46,11 @@ class RoleController extends Controller
     {
         $roles = $this->roleRepository->with('users', 'permissions')->orderBy('id')->get();
 
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             $perm = [];
-            foreach ( $role->permissions as $permission ) {
-                if ( ! isset( $perm[ $permission->module->name ] ) ) {
+
+            foreach ($role->permissions as $permission) {
+                if (! isset($perm[ $permission->module->name ])) {
                     $perm[ $permission->module->name ] = [];
                 }
 

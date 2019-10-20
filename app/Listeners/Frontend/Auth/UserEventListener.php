@@ -38,7 +38,7 @@ class UserEventListener
 
         $event->user->save();
 
-        logger(__("Usuario Inicio Sesión: ".$event->user->full_name));
+        logger(__('Usuario Inicio Sesión: '.$event->user->full_name));
     }
 
     /**
@@ -46,7 +46,7 @@ class UserEventListener
      */
     public function onLoggedOut($event)
     {
-        logger(__("Usuario Cerro Sesión: ".$event->user->full_name));
+        logger(__('Usuario Cerro Sesión: '.$event->user->full_name));
     }
 
     /**
@@ -54,7 +54,7 @@ class UserEventListener
      */
     public function onRegistered($event)
     {
-        logger(__("Usuario Registrado: ".$event->user->full_name));
+        logger(__('Usuario Registrado: '.$event->user->full_name));
     }
 
     /**
@@ -62,7 +62,7 @@ class UserEventListener
      */
     public function onProviderRegistered($event)
     {
-        logger(__("Proveedor de Usuario Registrado: ".$event->user->full_name));
+        logger(__('Proveedor de Usuario Registrado: '.$event->user->full_name));
     }
 
     /**
@@ -70,7 +70,7 @@ class UserEventListener
      */
     public function onConfirmed($event)
     {
-        logger(__("Usuario Confirmado: ".$event->user->full_name));
+        logger(__('Usuario Confirmado: '.$event->user->full_name));
     }
 
     /**
