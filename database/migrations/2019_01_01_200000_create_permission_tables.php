@@ -48,7 +48,6 @@ class CreatePermissionTables extends Migration
 
         if (! Schema::hasTable($tableNames['model_has_permissions'])) {
             Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames) {
-                $table->unsignedInteger('module_id');
                 $table->unsignedInteger('permission_id');
                 $table->morphs('model');
 
@@ -57,12 +56,7 @@ class CreatePermissionTables extends Migration
                     ->on($tableNames['permissions'])
                     ->onDelete('cascade');
 
-                $table->foreign('module_id')
-                    ->references('id')
-                    ->on($tableNames['modules'])
-                    ->onDelete('cascade');
-
-                $table->primary(['permission_id', 'module_id', 'model_id', 'model_type'], 'model_has_permissions_primary');
+                $table->primary(['permission_id', 'model_id', 'model_type'], 'model_has_permissions_primary');
             });
         }
 
