@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
-use Settings;
 use Illuminate\Http\Request;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;

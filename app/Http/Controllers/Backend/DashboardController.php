@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Auth\Permission;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Poseso\Settings\Contracts\RepositoryContract as Settings;
 
 /**
