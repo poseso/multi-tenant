@@ -135,11 +135,6 @@ class LoginController extends Controller
             throw new GeneralException(__('Su cuenta ha sido desactivada.'));
         }
 
-        $user->settings()->set('date_format', "d-m-Y");
-        $user->settings()->set('time_format', "g:i A");
-        $user->settings()->set('timezone', "America/Santo_Domingo");
-        $user->settings()->set('language', "es");
-        $user->settings()->set('position', "Empleado");
         $user->settings()->set('representante', $user->full_name);
 
         event(new UserLoggedIn($user));
