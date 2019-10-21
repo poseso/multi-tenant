@@ -65,6 +65,18 @@ class Permission extends SpatiePermission implements Recordable
             'module_id' => 3,
         ];
 
+        $permissions[] = [
+            'name' => [
+                'settings.read',
+                'settings.update',
+            ],
+            'display_name' => [
+                'Ver Ajustes',
+                'Modificar Ajustes',
+            ],
+            'module_id' => 4,
+        ];
+
         return $permissions;
     }
 }

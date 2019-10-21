@@ -15,14 +15,10 @@ class SettingsController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $representante = Settings::scope($user)->get('representante');
-
         $paises = Pais::all();
 
         return view('frontend.user.account.tabs.settings')
-            ->withPaises($paises)
-            ->withRepresentante($representante);
+            ->withPaises($paises);
     }
 
     /**

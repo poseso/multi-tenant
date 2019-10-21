@@ -30,6 +30,11 @@ class ModulesTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'name' => 'Ajustes',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         DB::table('modules')->insert($modules);
