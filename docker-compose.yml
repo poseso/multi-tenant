@@ -2,14 +2,13 @@ version: "3"
 services:
 
   web:
-    image: webhbb:2.0
     build:
       context: .
       dockerfile: container-build/web/Dockerfile
     environment:
-      - MYSQL_DATABASE=hbbdev
-      - MYSQL_USER=dink
-      - MYSQL_PASSWORD=123qwe
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=poseso
+      - MYSQL_PASSWORD=secret
       - MYSQL_HOST=127.0.2.1
     ports:
       - "127.0.2.1:80:80"
@@ -23,10 +22,10 @@ services:
     ports:
       - "127.0.2.1:3306:3306"
     environment:
-      - MYSQL_USER=dink
-      - MYSQL_PASSWORD=123qwe
-      - MYSQL_DATABASE=hbbdev
-      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=poseso
+      - MYSQL_PASSWORD=secret
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=secret
     volumes:
       - "mysql_data:/var/lib/mysql"
       - ./data/schema1.sql:/docker-entrypoint-initdb.d/schema.sql
