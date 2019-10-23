@@ -30,7 +30,7 @@ RUN apt-get update \
  nano \
  git \
  nodejs \
- wget\
+ wget \
  zsh \
  zlib1g-dev \
  default-mysql-client \
