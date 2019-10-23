@@ -304,12 +304,17 @@ class UserRepository extends BaseRepository
 
         if ($user->id === 1) {
             // Cant un-confirm admin
-            throw new GeneralException(__('No puede anular la confirmación del administrador.'));
+            throw new GeneralException(__('No puede anular la confirmación del super administrador.'));
         }
 
         if ($user->id === auth()->id()) {
             // Cant un-confirm self
             throw new GeneralException(__('No puede anular su propia confirmación.'));
+        }
+
+        if ($user->hasRole(config('access.users.admin_role)'))) {
+            // Cant un-confirm admin
+            throw new GeneralException(__('No puede anular la confirmación del administrador.'));
         }
 
         $user->confirmed = false;

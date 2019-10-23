@@ -39,6 +39,7 @@
 
                 <tbody>
                 @foreach($roles as $role)
+                    @role('Super Administrador')
                     <tr>
                         <td>{{ ucwords($role->name) }}</td>
                         <td>
@@ -57,6 +58,30 @@
                         <td>{{ $role->users->count() }} {{ trans_choice('{1} Usuario|[2,*] Usuarios', $role->users->count()) }}</td>
                         <td>@include('backend.auth.role.includes.actions', ['role' => $role])</td>
                     </tr>
+                    @endrole
+
+                    @if($role->name != config('access.users.super_admin_role'))
+                        @if($role->name != config('access.users.admin_role'))
+                            <tr>
+                                <td>{{ ucwords($role->name) }}</td>
+                                <td>
+                                    @if($role->id === 1)
+                                        {{ __('Todos') }}
+                                    @else
+                                        @if($role->permissions->count())
+                                            @foreach($perm as $modulo => $permisos)
+                                                <strong style="font-weight: 500;">{{ $modulo }}</strong> ({{ implode(', ', $permisos) }})<br />
+                                            @endforeach
+                                        @else
+                                            {{ __('Ninguno') }}
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>{{ $role->users->count() }} {{ trans_choice('{1} Usuario|[2,*] Usuarios', $role->users->count()) }}</td>
+                                <td>@include('backend.auth.role.includes.actions', ['role' => $role])</td>
+                            </tr>
+                        @endif
+                    @endif
                 @endforeach
                 </tbody>
 

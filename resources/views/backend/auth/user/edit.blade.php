@@ -90,6 +90,7 @@
                                     <td>
                                         @if($roles->count())
                                             @foreach($roles as $role)
+                                                @if($role->name != config('access.users.super_admin_role'))
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <div class="checkbox d-flex align-items-center">
@@ -123,6 +124,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                @endif
                                             @endforeach
                                         @endif
                                     </td>

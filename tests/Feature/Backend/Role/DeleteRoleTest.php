@@ -30,9 +30,11 @@ class DeleteRoleTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->delete('/admin/auth/role/1');
+        $roleId = Role::where('name', '=', config('access.users.super_admin_role'))->value('id');
 
-        $response->assertSessionHas(['flash_danger' => __('exceptions.backend.access.roles.cant_delete_admin')]);
+        $response = $this->delete('/admin/auth/role/'.$roleId);
+
+        $response->assertSessionHas(['flash_danger' => __('No puede eliminar el Rol de Super Administrador.')]);
     }
 
     /** @test */

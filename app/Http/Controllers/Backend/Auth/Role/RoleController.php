@@ -99,8 +99,8 @@ class RoleController extends Controller
      */
     public function edit(ManageRoleRequest $request, Role $role)
     {
-        if ($role->isAdmin()) {
-            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puedes modificar el Perfil de Administrador.'));
+        if ($role->isSuperAdmin()) {
+            return redirect()->route('admin.auth.role.index')->withFlashDanger(__('No puedes modificar el Perfil de Super Administrador.'));
         }
 
         $permissions = Permission::with('module')->orderBy('permissions.id', 'ASC')->get();

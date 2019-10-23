@@ -27,6 +27,7 @@ trait UserMethod
      * @param bool $size
      *
      * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
+     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
      */
     public function getPicture($size = false)
     {
@@ -67,11 +68,27 @@ trait UserMethod
         return false;
     }
 
+
     /**
      * @return mixed
      */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole(config('access.users.super_admin_role'));
+    }
+
+
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {
+        $superAdminCheck = $this->isSuperAdmin();
+
+        if($superAdminCheck == true){
+            return true;
+        }
+
         return $this->hasRole(config('access.users.admin_role'));
     }
 

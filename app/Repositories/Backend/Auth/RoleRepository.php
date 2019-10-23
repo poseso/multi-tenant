@@ -72,8 +72,8 @@ class RoleRepository extends BaseRepository
      */
     public function update(Role $role, array $data)
     {
-        if ($role->isAdmin()) {
-            throw new GeneralException(__('No puedes modificar el perfil de administrador.'));
+        if ($role->isSuperAdmin()) {
+            throw new GeneralException(__('No puedes modificar el perfil de super administrador.'));
         }
 
         // If the name is changing make sure it doesn't already exist

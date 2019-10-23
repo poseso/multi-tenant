@@ -39,6 +39,7 @@ class PermissionRoleTableSeeder extends Seeder
         $this->command->info('--------------------------------------------------------');
 
         // Create Roles
+        Role::create(['name' => config('access.users.super_admin_role')]);
         Role::create(['name' => config('access.users.admin_role')]);
         Role::create(['name' => config('access.users.default_role')]);
 
@@ -46,12 +47,12 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Add roles
         foreach ($roles as $role) {
-            if ($role->name == config('access.users.admin_role')) {
+            if ($role->name == config('access.users.super_admin_role') || config('access.users.admin_role')) {
                 // Assign all permissions
-                // Note: Admin (User 1) Has all permissions via a gate in the AuthServiceProvider
+                // Note: Super Admin (User 1) and Admin Has all permissions via a gate in the AuthServiceProvider
                 $role->syncPermissions(Permission::all());
                 $this->command->info('--------------------------------------------------------');
-                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS AL ROL'.' '.mb_strtoupper(config('access.users.admin_role'))));
+                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS A LOS ROLES' .' '. mb_strtoupper(config('access.users.super_admin_role')) .'-'. mb_strtoupper(config('access.users.admin_role'))));
                 $this->command->info('--------------------------------------------------------');
             } else {
                 // For others by default only read access
@@ -75,7 +76,16 @@ class PermissionRoleTableSeeder extends Seeder
         $user = factory(User::class)->create();
         $user->assignRole($role->name);
 
-        if ($role->name == config('access.users.admin_role')) {
+        if ($role->name == config('access.users.super_admin_role')) {
+            $this->command->info('--------------------------------------------------------');
+            $this->command->info(__('DETALLES PARA INICIAR SESION COMO SUPER ADMINISTRADOR:'));
+            $this->command->info('--------------------------------------------------------');
+            $this->command->info('');
+            $this->command->warn(__("Correo: $user->email"));
+            $this->command->warn(__("Usuario: $user->username"));
+            $this->command->warn(__('Contraseña: secret'));
+            $this->command->info('');
+        } elseif ($role->name == config('access.users.admin_role')) {
             $this->command->info('--------------------------------------------------------');
             $this->command->info(__('DETALLES PARA INICIAR SESION COMO ADMINISTRADOR:'));
             $this->command->info('--------------------------------------------------------');

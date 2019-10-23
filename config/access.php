@@ -21,6 +21,9 @@ return [
         'change_email' => env('CHANGE_EMAIL', false),
 
         // The name of the super administrator role
+        'super_admin_role' => 'Super Administrador',
+
+        // The name of the administrator role
         'admin_role' => 'Administrador',
 
         // The default role all new registered users get added to
