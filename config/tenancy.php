@@ -222,7 +222,7 @@ return [
          *
          * @warn specify a valid fully qualified class name.
          */
-        'tenant-seed-class' => database_path(DatabaseSeeder::class),
+        'tenant-seed-class' => database_path(TenantsDatabaseSeeder::class),
 
         /*
          * Automatically generate a tenant database based on the random id of the
@@ -288,12 +288,10 @@ return [
          * @info Useful for overriding the connection of third party packages.
          */
         'force-tenant-connection-of-models' => [
-            //            App\User::class
-            Modules\Core\Models\User\SecurityLog::class,
+            App\Models\Admin\Auth\User::class,
         ],
         'force-system-connection-of-models' => [
-            // Modules\Core\Models\User\User::class,
-            //            App\User::class
+            App\Models\Auth\User::class,
         ],
     ],
 
