@@ -53,6 +53,7 @@
     "autoload": {
         "classmap": [
             "database/seeds",
+            "database/seeds/tenants",
             "database/factories"
         ],
         "psr-4": {
