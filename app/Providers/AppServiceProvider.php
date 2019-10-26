@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Hyn\Tenancy\Environment;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -83,5 +84,14 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('langrtl', function ($session_identifier = 'lang-rtl') {
             return session()->has($session_identifier);
         });
+
+        $env = app(Environment::class);
+        if ($fqdn = optional($env->hostname())->fqdn) {
+            if ($fqdn == env('TENANCY_DEFAULT_HOSTNAME')) {
+                config(['database.default' => 'system']);
+            }else{
+                config(['database.default' => 'tenant']);
+            }
+        }
     }
 }
