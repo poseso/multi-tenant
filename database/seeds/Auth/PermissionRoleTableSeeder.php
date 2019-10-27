@@ -52,7 +52,7 @@ class PermissionRoleTableSeeder extends Seeder
                 // Note: Super Admin (User 1) and Admin Has all permissions via a gate in the AuthServiceProvider
                 $role->syncPermissions(Permission::all());
                 $this->command->info('--------------------------------------------------------');
-                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS A LOS ROLES' .' '. mb_strtoupper(config('access.users.super_admin_role')) .'-'. mb_strtoupper(config('access.users.admin_role'))));
+                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS A LOS ROLES'.' '.mb_strtoupper(config('access.users.super_admin_role')).'-'.mb_strtoupper(config('access.users.admin_role'))));
                 $this->command->info('--------------------------------------------------------');
             } else {
                 // For others by default only read access

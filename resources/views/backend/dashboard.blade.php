@@ -23,6 +23,21 @@
                         {{ $k }}: {{ $v }}
                     </li>
                 @endforeach
+
+                <hr>
+                <p>
+                    BASE DE DATOS ACTUAL: <strong>{{ \DB::connection()->getDatabaseName() }}</strong>
+                </p>
+                <p>
+                    BASE DE DATOS TENANT: <strong>{{ \DB::connection('tenant')->getDatabaseName() }}</strong>
+                </p>
+
+                <div class="kt-separator kt-separator--border-dashed kt-separator--portlet-fit kt-separator--space-lg"></div>
+
+                Connection Configuration:
+                <pre>
+                    {{ print_r($config) }}
+                </pre>
             </div><!--card-->
         </div><!--col-->
     </div><!--row-->

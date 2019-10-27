@@ -1,11 +1,10 @@
 <?php
 
-
 Route::group([
     'prefix' => 'backup',
     'as' => 'backup.',
     'namespace' => 'Backup',
-    ['role:'.config('access.users.super_admin_role') .'|'. config('access.users.admin_role')],
+    ['role:'.config('access.users.super_admin_role').'|'.config('access.users.admin_role')],
 ], function () {
     // Backup routes
     Route::get('/', 'BackupController@index')->name('index');

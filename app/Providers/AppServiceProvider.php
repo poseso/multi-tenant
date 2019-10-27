@@ -86,10 +86,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $env = app(Environment::class);
+
         if ($fqdn = optional($env->hostname())->fqdn) {
             if ($fqdn == env('TENANCY_DEFAULT_HOSTNAME')) {
                 config(['database.default' => 'system']);
-            }else{
+            } else {
                 config(['database.default' => 'tenant']);
             }
         }

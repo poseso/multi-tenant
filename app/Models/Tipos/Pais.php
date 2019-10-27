@@ -4,6 +4,7 @@ namespace App\Models\Tipos;
 
 use App\Models\Traits\GlobalScopeTrait;
 use Illuminate\Database\Eloquent\Model;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -16,7 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pais extends Model
 {
     use SoftDeletes,
-        GlobalScopeTrait;
+        GlobalScopeTrait,
+        UsesSystemConnection;
 
     protected $table = 'paises';
 

@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 use App\Models\Auth\Traits\Method\RoleMethod;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Altek\Accountant\Recordable as RecordableTrait;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Role extends SpatieRole implements Recordable
 {
     use RecordableTrait,
+        UsesSystemConnection,
         RoleMethod;
 
     /**

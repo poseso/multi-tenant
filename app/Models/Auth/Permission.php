@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Models\Permission as SpatiePermission;
@@ -12,7 +13,8 @@ use Spatie\Permission\Models\Permission as SpatiePermission;
  */
 class Permission extends SpatiePermission implements Recordable
 {
-    use RecordableTrait;
+    use RecordableTrait,
+        UsesSystemConnection;
 
     public function module() : BelongsTo
     {

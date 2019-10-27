@@ -26,8 +26,8 @@ trait UserMethod
     /**
      * @param bool $size
      *
-     * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
+     * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
      */
     public function getPicture($size = false)
     {
@@ -68,7 +68,6 @@ trait UserMethod
         return false;
     }
 
-
     /**
      * @return mixed
      */
@@ -77,7 +76,6 @@ trait UserMethod
         return $this->hasRole(config('access.users.super_admin_role'));
     }
 
-
     /**
      * @return bool
      */
@@ -85,7 +83,7 @@ trait UserMethod
     {
         $superAdminCheck = $this->isSuperAdmin();
 
-        if($superAdminCheck == true){
+        if ($superAdminCheck == true) {
             return true;
         }
 

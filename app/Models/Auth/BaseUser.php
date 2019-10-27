@@ -9,6 +9,7 @@ use Poseso\Settings\Traits\HasSettings;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
@@ -25,6 +26,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         Notifiable,
         HasSettings,
         RecordableTrait,
+        UsesSystemConnection,
         SendUserPasswordReset,
         SoftDeletes,
         Uuid;

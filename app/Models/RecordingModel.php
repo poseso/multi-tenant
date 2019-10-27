@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Altek\Accountant\Contracts\Recordable;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Altek\Accountant\Recordable as RecordableTrait;
 
 /**
@@ -11,5 +12,6 @@ use Altek\Accountant\Recordable as RecordableTrait;
  */
 abstract class RecordingModel extends Model implements Recordable
 {
-    use RecordableTrait;
+    use RecordableTrait,
+        UsesSystemConnection;
 }

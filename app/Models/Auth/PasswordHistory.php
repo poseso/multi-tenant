@@ -3,12 +3,15 @@
 namespace App\Models\Auth;
 
 use Illuminate\Database\Eloquent\Model;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 
 /**
  * Class PasswordHistory.
  */
 class PasswordHistory extends Model
 {
+    use UsesSystemConnection;
+
     /**
      * The database table used by the model.
      *

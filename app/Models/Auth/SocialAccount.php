@@ -3,12 +3,15 @@
 namespace App\Models\Auth;
 
 use App\Models\RecordingModel;
+use Hyn\Tenancy\Traits\UsesSystemConnection;
 
 /**
  * Class SocialAccount.
  */
 class SocialAccount extends RecordingModel
 {
+    use UsesSystemConnection;
+
     /**
      * The database table used by the model.
      *
