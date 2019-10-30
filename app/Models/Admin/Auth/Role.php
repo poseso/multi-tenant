@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models\Auth;
+namespace App\Models\Admin\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
-use App\Models\Auth\Traits\Method\RoleMethod;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
+use App\Models\Admin\Auth\Traits\Method\RoleMethod;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,7 +15,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Role extends SpatieRole implements Recordable
 {
     use RecordableTrait,
+        UsesTenantConnection,
         RoleMethod;
+
+    protected $guard_name = 'web';
 
     /**
      * A role may be given various permissions.

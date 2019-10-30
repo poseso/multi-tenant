@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Auth\Traits;
+namespace App\Models\Admin\Auth\Traits;
 
-use App\Notifications\Frontend\Auth\UserNeedsPasswordReset;
+use App\Notifications\Frontend\Admin\Auth\UserNeedsPasswordReset;
 
 /**
  * Class SendUserPasswordReset.

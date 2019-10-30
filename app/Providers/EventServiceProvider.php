@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Listeners\Frontend\System\Auth\UserEventListener;
+use App\Listeners\Backend\System\Auth\Role\RoleEventListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 /**
@@ -27,13 +29,13 @@ class EventServiceProvider extends ServiceProvider
         // Frontend Subscribers
 
         // Auth Subscribers
-        \App\Listeners\Frontend\Auth\UserEventListener::class,
+        UserEventListener::class,
 
         // Backend Subscribers
 
         // Auth Subscribers
-        \App\Listeners\Backend\Auth\User\UserEventListener::class,
-        \App\Listeners\Backend\Auth\Role\RoleEventListener::class,
+        \App\Listeners\Backend\System\Auth\User\UserEventListener::class,
+        RoleEventListener::class,
     ];
 
     /**

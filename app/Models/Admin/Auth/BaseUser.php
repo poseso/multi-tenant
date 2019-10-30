@@ -10,9 +10,10 @@ use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Auth\Traits\SendUserPasswordReset;
+use App\Models\Admin\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
 
 /**
  * Class User.
@@ -25,9 +26,12 @@ abstract class BaseUser extends Authenticatable implements Recordable
         Notifiable,
         HasSettings,
         RecordableTrait,
+        UsesTenantConnection,
         SendUserPasswordReset,
         SoftDeletes,
         Uuid;
+
+    protected $guard_name = 'web';
 
     /**
      * The attributes that are mass assignable.

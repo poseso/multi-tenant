@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
-use App\Models\Auth\Permission;
+use App\Models\System\Auth\Role;
+use App\Models\System\Auth\User;
+use App\Models\System\Auth\Permission;
 use Illuminate\Database\Seeder;
 
 /**
@@ -19,6 +19,48 @@ class PermissionRoleTableSeeder extends Seeder
     {
         $this->disableForeignKeys();
 
+        // Add the master administrator, user id of 1
+        User::create([
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
+            'username' => 'superadmin',
+            'email' => 'superadmin@admin.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Admin',
+            'last_name' => 'Istrator',
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Usuario',
+            'last_name' => 'Predeterminado',
+            'username' => 'defaultuser',
+            'email' => 'user@user.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        // Create Roles
+        Role::create([
+            'name' => config('access.users.super_admin_role')
+        ]);
+        Role::create([
+            'name' => config('access.users.admin_role')
+        ]);
+        Role::create([
+            'name' => config('access.users.default_role')
+        ]);
+
         // Seed the default permissions
         $permissions = Permission::defaultPermissions();
 
@@ -32,77 +74,10 @@ class PermissionRoleTableSeeder extends Seeder
             }
         }
 
-        $this->command->info('--------------------------------------------------------');
-        $this->command->info('');
-        $this->command->info(__('PERMISOS PREDETERMINADOS AGREGADOS CORRECTAMENTE.'));
-        $this->command->info('');
-        $this->command->info('--------------------------------------------------------');
-
-        // Create Roles
-        Role::create(['name' => config('access.users.super_admin_role')]);
-        Role::create(['name' => config('access.users.admin_role')]);
-        Role::create(['name' => config('access.users.default_role')]);
-
-        $roles = Role::all();
-
-        // Add roles
-        foreach ($roles as $role) {
-            if ($role->name == config('access.users.super_admin_role') || config('access.users.admin_role')) {
-                // Assign all permissions
-                // Note: Super Admin (User 1) and Admin Has all permissions via a gate in the AuthServiceProvider
-                $role->syncPermissions(Permission::all());
-                $this->command->info('--------------------------------------------------------');
-                $this->command->info(__('TODOS LOS PERMISOS OTORGADOS A LOS ROLES'.' '.mb_strtoupper(config('access.users.super_admin_role')).'-'.mb_strtoupper(config('access.users.admin_role'))));
-                $this->command->info('--------------------------------------------------------');
-            } else {
-                // For others by default only read access
-                $role->syncPermissions(Permission::where('name', 'LIKE', '%.read')->get());
-            }
-
-            // Create one user for each role
-            $this->createUser($role);
-        }
+        User::find(1)->assignRole(config('access.users.super_admin_role'));
+        User::find(2)->assignRole(config('access.users.admin_role'));
+        User::find(3)->assignRole(config('access.users.default_role'));
 
         $this->enableForeignKeys();
-    }
-
-    /**
-     * Create a user with given role.
-     *
-     * @param $role
-     */
-    private function createUser($role)
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole($role->name);
-
-        if ($role->name == config('access.users.super_admin_role')) {
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info(__('DETALLES PARA INICIAR SESION COMO SUPER ADMINISTRADOR:'));
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info('');
-            $this->command->warn(__("Correo: $user->email"));
-            $this->command->warn(__("Usuario: $user->username"));
-            $this->command->warn(__('Contraseña: secret'));
-            $this->command->info('');
-        } elseif ($role->name == config('access.users.admin_role')) {
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info(__('DETALLES PARA INICIAR SESION COMO ADMINISTRADOR:'));
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info('');
-            $this->command->warn(__("Correo: $user->email"));
-            $this->command->warn(__("Usuario: $user->username"));
-            $this->command->warn(__('Contraseña: secret'));
-            $this->command->info('');
-        } else {
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info(__('DETALLES PARA INICIAR SESION COMO USUARIO:'));
-            $this->command->info('--------------------------------------------------------');
-            $this->command->info('');
-            $this->command->warn(__("Correo: $user->email"));
-            $this->command->warn(__("Usuario: $user->username"));
-            $this->command->warn(__('Contraseña: secret'));
-            $this->command->info('');
-        }
     }
 }

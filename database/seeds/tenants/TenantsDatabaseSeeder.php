@@ -23,11 +23,11 @@ class TenantsDatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            AuthTableSeeder::class,
-            SettingsTableSeeder::class,
-            PaisesTableSeeder::class,
-            ProvinciasTableSeeder::class,
-            MunicipiosTableSeeder::class,
+            TenantsAuthTableSeeder::class,
+            TenantsSettingsTableSeeder::class,
+            TenantsPaisesTableSeeder::class,
+            TenantsProvinciasTableSeeder::class,
+            TenantsMunicipiosTableSeeder::class,
         ]);
 
         Model::reguard();

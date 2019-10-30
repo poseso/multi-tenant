@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use App\Http\Composers\GlobalComposer;
 use Illuminate\Support\ServiceProvider;
-use App\Http\Composers\Backend\SidebarComposer;
+use App\Http\Composers\Backend\System\SidebarComposer;
 
 /**
  * Class ComposerServiceProvider.

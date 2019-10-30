@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\Traits\Attribute;
+namespace App\Models\Admin\Auth\Traits\Attribute;
 
 use Illuminate\Support\Facades\Hash;
 

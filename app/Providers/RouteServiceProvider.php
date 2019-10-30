@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

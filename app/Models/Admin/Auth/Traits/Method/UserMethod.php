@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Auth\Traits\Method;
+namespace App\Models\Admin\Auth\Traits\Method;
 
 /**
  * Trait UserMethod.

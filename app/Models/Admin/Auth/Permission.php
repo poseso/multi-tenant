@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\Auth;
+namespace App\Models\Admin\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
+use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Permission\Models\Permission as SpatiePermission;
@@ -12,7 +13,10 @@ use Spatie\Permission\Models\Permission as SpatiePermission;
  */
 class Permission extends SpatiePermission implements Recordable
 {
-    use RecordableTrait;
+    use RecordableTrait,
+        UsesTenantConnection;
+
+    protected $guard_name = 'web';
 
     public function module() : BelongsTo
     {

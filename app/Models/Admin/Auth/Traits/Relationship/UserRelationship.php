@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Auth\Traits\Relationship;
+namespace App\Models\Admin\Auth\Traits\Relationship;
 
-use App\Models\Auth\SocialAccount;
-use App\Models\Auth\PasswordHistory;
+use App\Models\Admin\Auth\SocialAccount;
+use App\Models\Admin\Auth\PasswordHistory;
 
 /**
  * Class UserRelationship.
