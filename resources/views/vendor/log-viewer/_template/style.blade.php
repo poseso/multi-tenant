@@ -171,6 +171,7 @@
 
     .badge-env {
         background-color: #6A1B9A;
+        color:white;
         font-size: .875em;
     }
 
@@ -179,5 +180,5 @@
         background-color: #eee;
         color: #777;
         cursor: not-allowed;
-}
+    }
 </style>
