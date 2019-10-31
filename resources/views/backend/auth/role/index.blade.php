@@ -43,15 +43,19 @@
                     <tr>
                         <td>{{ ucwords($role->name) }}</td>
                         <td>
-                            @if($role->id === 1)
-                                {{ __('Todos') }}
+                            @if($role->id === 1 || $role->id === 2)
+                                <span class="badge badge-success bg-light-blue-a300">
+                                    {{ __('Todos') }}
+                                </span>
                             @else
                                 @if($role->permissions->count())
                                     @foreach($perm as $modulo => $permisos)
                                         <strong style="font-weight: 500;">{{ $modulo }}</strong> ({{ implode(', ', $permisos) }})<br />
                                     @endforeach
                                 @else
-                                    {{ __('Ninguno') }}
+                                    <span class="badge badge-success bg-red-600">
+                                        {{ __('Ninguno') }}
+                                    </span>
                                 @endif
                             @endif
                         </td>
@@ -65,15 +69,19 @@
                             <tr>
                                 <td>{{ ucwords($role->name) }}</td>
                                 <td>
-                                    @if($role->id === 1)
-                                        {{ __('Todos') }}
+                                    @if($role->id === 1 || $role->id === 2)
+                                        <span class="badge badge-success bg-light-blue-a300">
+                                            {{ __('Todos') }}
+                                        </span>
                                     @else
                                         @if($role->permissions->count())
                                             @foreach($perm as $modulo => $permisos)
                                                 <strong style="font-weight: 500;">{{ $modulo }}</strong> ({{ implode(', ', $permisos) }})<br />
                                             @endforeach
                                         @else
-                                            {{ __('Ninguno') }}
+                                            <span class="badge badge-success bg-red-600">
+                                                {{ __('Ninguno') }}
+                                            </span>
                                         @endif
                                     @endif
                                 </td>

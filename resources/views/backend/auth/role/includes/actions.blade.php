@@ -1,4 +1,4 @@
-@if ($role->id !== 1)
+@if ($role->id !== 1 && $role->id !== 2)
     <div class="dropdown">
         <a data-toggle="dropdown" class="btn btn-sm btn-clean btn-icon btn-icon-md">
             <i class="flaticon-more-1"></i>

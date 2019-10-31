@@ -38,6 +38,8 @@
                 <pre>
                     {{ print_r($config) }}
                 </pre>
+
+                <p> {{ $logged_in_user->roles }}</p>
             </div><!--card-->
         </div><!--col-->
     </div><!--row-->
