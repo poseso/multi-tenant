@@ -145,9 +145,9 @@
                     </div>
                 </li>
 
-                <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Route::is('admin/log-viewer*'), 'kt-menu__item--open kt-menu__item--active') }}"
+                <li class="kt-menu__item kt-menu__item--submenu {{ active_class(Request::is('admin/log-viewer*'), 'kt-menu__item--open kt-menu__item--active') }}"
                     aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-                    <a href="javascript:" class="kt-menu__link kt-menu__toggle {{ active_class(Route::is('admin/log-viewer*')) }}">
+                    <a href="javascript:" class="kt-menu__link kt-menu__toggle {{ active_class(Request::is('admin/log-viewer*')) }}">
                         <i class="kt-menu__link-icon flaticon-security"></i>
                         <span class="kt-menu__link-text">
                             {{ __('Logs de Errores') }}
@@ -159,7 +159,7 @@
                     <div class="kt-menu__submenu">
                         <span class="kt-menu__arrow"></span>
                         <ul class="kt-menu__subnav">
-                            <li class="kt-menu__item @if(active_class(Route::is('admin/log-viewer'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <li class="kt-menu__item @if(active_class(Route::is('log-viewer::dashboard'))) kt-menu__item--active @endif" aria-haspopup="true">
                                 <a href="{{ route('log-viewer::dashboard') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
                                         <span></span>
@@ -171,7 +171,7 @@
                                 </a>
                             </li>
 
-                            <li class="kt-menu__item @if(active_class(Route::is('admin/log-viewer/logs*'))) kt-menu__item--active @endif" aria-haspopup="true">
+                            <li class="kt-menu__item @if(active_class(Route::is('log-viewer::logs.list*'))) kt-menu__item--active @endif" aria-haspopup="true">
                                 <a href="{{ route('log-viewer::logs.list') }}" class="kt-menu__link">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--line">
                                         <span></span>
