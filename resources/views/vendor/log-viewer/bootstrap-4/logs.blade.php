@@ -65,17 +65,24 @@
                                         </td>
                                     @endforeach
                                     <td class="text-right">
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Log Viewer Actions">
-                                            <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-sm btn-info">
-                                                <i class="fa fa-search"></i>
-                                            </a>
-                                            <a href="{{ route('log-viewer::logs.download', [$date]) }}" class="btn btn-sm btn-success">
-                                                <i class="fa fa-download"></i>
+                                        <div class="dropdown">
+                                            <a data-toggle="dropdown" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+                                                <i class="flaticon-more-1"></i>
                                             </a>
 
-                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-backdrop="false" data-target="#delete-log-modal" data-log-date="{{ $date }}">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="dropdown-item">
+                                                    {{ __('Visualizar') }}
+                                                </a>
+
+                                                <a href="{{ route('log-viewer::logs.download', [$date]) }}" class="dropdown-item">
+                                                    {{ __('Descargar') }}
+                                                </a>
+
+                                                <a class="dropdown-item" data-toggle="modal" data-backdrop="false" data-target="#delete-log-modal" data-log-date="{{ $date }}">
+                                                    {{ __('Eliminar') }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
