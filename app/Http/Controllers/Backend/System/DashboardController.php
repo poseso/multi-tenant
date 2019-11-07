@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend\System;
 
-use App\Models\System\Auth\Permission;
 use App\Http\Controllers\Controller;
+use App\Models\System\Auth\Permission;
 use Poseso\Settings\Contracts\RepositoryContract as Settings;
 
 /**

@@ -9,11 +9,11 @@ use Poseso\Settings\Traits\HasSettings;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Admin\Auth\Traits\SendUserPasswordReset;
-use Altek\Accountant\Recordable as RecordableTrait;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Altek\Accountant\Recordable as RecordableTrait;
+use App\Models\Admin\Auth\Traits\SendUserPasswordReset;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User.

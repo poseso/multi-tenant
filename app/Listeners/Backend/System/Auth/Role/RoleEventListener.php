@@ -16,7 +16,7 @@ class RoleEventListener
      */
     public function onCreated($event)
     {
-        logger(__("Perfil Creado"));
+        logger(__('Perfil Creado'));
     }
 
     /**
@@ -24,7 +24,7 @@ class RoleEventListener
      */
     public function onUpdated($event)
     {
-        logger(__("Perfil Actualizado"));
+        logger(__('Perfil Actualizado'));
     }
 
     /**
@@ -32,7 +32,7 @@ class RoleEventListener
      */
     public function onDeleted($event)
     {
-        logger(__("Perfil Eliminado"));
+        logger(__('Perfil Eliminado'));
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Backend\System\Auth;
 
-use App\Models\System\Auth\Permission;
 use App\Repositories\BaseRepository;
+use App\Models\System\Auth\Permission;
 
 /**
  * Class PermissionRepository.

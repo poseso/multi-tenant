@@ -288,7 +288,7 @@ return [
          * @info Useful for overriding the connection of third party packages.
          */
         'force-tenant-connection-of-models' => [
-//            App\Models\Admin\Auth\User::class,
+            //            App\Models\Admin\Auth\User::class,
         ],
         'force-system-connection-of-models' => [
             App\Models\System\Auth\User::class,

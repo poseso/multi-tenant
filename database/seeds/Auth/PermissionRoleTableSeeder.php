@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Database\Seeder;
 use App\Models\System\Auth\Role;
 use App\Models\System\Auth\User;
 use App\Models\System\Auth\Permission;
-use Illuminate\Database\Seeder;
 
 /**
  * Class PermissionRoleTableSeeder.
@@ -52,13 +52,13 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Create Roles
         Role::create([
-            'name' => config('access.users.super_admin_role')
+            'name' => config('access.users.super_admin_role'),
         ]);
         Role::create([
-            'name' => config('access.users.admin_role')
+            'name' => config('access.users.admin_role'),
         ]);
         Role::create([
-            'name' => config('access.users.default_role')
+            'name' => config('access.users.default_role'),
         ]);
 
         // Seed the default permissions

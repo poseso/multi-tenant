@@ -4,9 +4,9 @@ namespace App\Models\System\Auth;
 
 use Altek\Accountant\Contracts\Recordable;
 use Hyn\Tenancy\Traits\UsesSystemConnection;
-use App\Models\System\Auth\Traits\Method\RoleMethod;
 use Spatie\Permission\Models\Role as SpatieRole;
 use Altek\Accountant\Recordable as RecordableTrait;
+use App\Models\System\Auth\Traits\Method\RoleMethod;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**

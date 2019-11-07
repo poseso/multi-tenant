@@ -11,9 +11,9 @@ use Altek\Accountant\Contracts\Recordable;
 use Lab404\Impersonate\Models\Impersonate;
 use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\System\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\System\Auth\Traits\SendUserPasswordReset;
 
 /**
  * Class User.

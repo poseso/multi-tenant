@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend\System\Auth\User;
 
 use App\Models\System\Auth\User;
-use App\Models\System\Auth\SocialAccount;
 use App\Http\Controllers\Controller;
+use App\Models\System\Auth\SocialAccount;
 use App\Http\Requests\Backend\System\Auth\User\ManageUserRequest;
 use App\Repositories\Backend\System\Access\User\SocialRepository;
 

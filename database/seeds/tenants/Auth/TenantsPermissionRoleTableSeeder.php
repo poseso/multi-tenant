@@ -2,8 +2,8 @@
 
 use App\Models\Admin\Auth\Role;
 use App\Models\Admin\Auth\User;
-use App\Models\Admin\Auth\Permission;
 use Illuminate\Database\Seeder;
+use App\Models\Admin\Auth\Permission;
 
 /**
  * Class PermissionRoleTableSeeder.
@@ -52,13 +52,13 @@ class TenantsPermissionRoleTableSeeder extends Seeder
 
         // Create Roles
         Role::create([
-            'name' => config('access.users.super_admin_role')
+            'name' => config('access.users.super_admin_role'),
         ]);
         Role::create([
-            'name' => config('access.users.admin_role')
+            'name' => config('access.users.admin_role'),
         ]);
         Role::create([
-            'name' => config('access.users.default_role')
+            'name' => config('access.users.default_role'),
         ]);
 
         // Seed the default permissions
@@ -80,5 +80,4 @@ class TenantsPermissionRoleTableSeeder extends Seeder
 
         $this->enableForeignKeys();
     }
-
 }

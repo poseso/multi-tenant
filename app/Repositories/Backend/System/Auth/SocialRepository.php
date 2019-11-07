@@ -3,8 +3,8 @@
 namespace App\Repositories\Backend\System\Access\User;
 
 use App\Models\System\Auth\User;
-use App\Models\System\Auth\SocialAccount;
 use App\Exceptions\GeneralException;
+use App\Models\System\Auth\SocialAccount;
 use App\Events\Backend\System\Auth\User\UserSocialDeleted;
 
 /**

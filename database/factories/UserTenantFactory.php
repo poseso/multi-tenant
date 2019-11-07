@@ -3,8 +3,8 @@
 use Carbon\Carbon;
 use Faker\Generator;
 use Ramsey\Uuid\Uuid;
-use App\Models\Admin\Auth\User;
 use Illuminate\Support\Str;
+use App\Models\Admin\Auth\User;
 
 /*
 |--------------------------------------------------------------------------
