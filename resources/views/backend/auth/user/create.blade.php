@@ -147,11 +147,20 @@
                             <h3 class="kt-portlet__head-title">{{ __('Perfiles') }}</h3>
                             <div class="table-responsive">
                                 <table class="table-permissions">
+                                    @php
+                                        $userRoles = [];
+                                        foreach($logged_in_user->roles as $r){
+                                            $userRoles[] = $r->id;
+                                        }
+                                    @endphp
                                     <tbody>
                                     <tr>
                                         <td>
                                             @if($roles->count())
                                                 @foreach($roles as $role)
+                                                    @if($role->id == 1 && !in_array(1, $userRoles) )
+                                                        @continue
+                                                    @endif
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <div class="checkbox d-flex align-items-center">
@@ -168,7 +177,7 @@
                                                         </div>
 
                                                         <div class="card-body">
-                                                            @if($role->id != 1)
+                                                            @if($role->id != 2)
                                                                 @if($role->permissions->count())
                                                                     @foreach($role->permissions as $permission)
                                                                         <label class="kt-checkbox kt-checkbox--bold">

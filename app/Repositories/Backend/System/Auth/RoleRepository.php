@@ -77,11 +77,11 @@ class RoleRepository extends BaseRepository
         }
 
         // If the name is changing make sure it doesn't already exist
-        if ($role->name !== strtolower($data['name'])) {
-            if ($this->roleExists($data['name'])) {
-                throw new GeneralException('Ya existe un perfil con el nombre '.$data['name']);
-            }
-        }
+//        if ($role->name !== strtolower($data['name'])) {
+//            if ($this->roleExists($data['name'])) {
+//                throw new GeneralException('Ya existe un perfil con el nombre '.$data['name']);
+//            }
+//        }
 
         if (! isset($data['permissions']) || ! \count($data['permissions'])) {
             $data['permissions'] = [];

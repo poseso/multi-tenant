@@ -27,6 +27,12 @@
         </div>
 
         <div class="kt-portlet__body">
+            @php
+            $userRoles = [];
+            foreach($logged_in_user->roles as $r){
+                $userRoles[] = $r->id;
+            }
+            @endphp
             <table id="tabla-perfiles" class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
@@ -39,7 +45,9 @@
 
                 <tbody>
                 @foreach($roles as $role)
-                    @role('Super Administrador')
+                    @if($role->id == 1 && !in_array(1, $userRoles) )
+                        @continue
+                    @endif
                     <tr>
                         <td>{{ ucwords($role->name) }}</td>
                         <td>
@@ -62,34 +70,6 @@
                         <td>{{ $role->users->count() }} {{ trans_choice('{1} Usuario|[2,*] Usuarios', $role->users->count()) }}</td>
                         <td>@include('backend.auth.role.includes.actions', ['role' => $role])</td>
                     </tr>
-                    @endrole
-
-                    @if($role->name != config('access.users.super_admin_role'))
-                        @if($role->name != config('access.users.admin_role'))
-                            <tr>
-                                <td>{{ ucwords($role->name) }}</td>
-                                <td>
-                                    @if($role->id === 1 || $role->id === 2)
-                                        <span class="badge badge-success bg-light-blue-a300">
-                                            {{ __('Todos') }}
-                                        </span>
-                                    @else
-                                        @if($role->permissions->count())
-                                            @foreach($perm as $modulo => $permisos)
-                                                <strong style="font-weight: 500;">{{ $modulo }}</strong> ({{ implode(', ', $permisos) }})<br />
-                                            @endforeach
-                                        @else
-                                            <span class="badge badge-success bg-red-600">
-                                                {{ __('Ninguno') }}
-                                            </span>
-                                        @endif
-                                    @endif
-                                </td>
-                                <td>{{ $role->users->count() }} {{ trans_choice('{1} Usuario|[2,*] Usuarios', $role->users->count()) }}</td>
-                                <td>@include('backend.auth.role.includes.actions', ['role' => $role])</td>
-                            </tr>
-                        @endif
-                    @endif
                 @endforeach
                 </tbody>
 

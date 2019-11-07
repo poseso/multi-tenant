@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend\System\Auth\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class UpdateRoleRequest.
@@ -27,7 +28,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'max:35'],
         ];
     }
 }
