@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\System\Auth\UserLog;
+
 return [
     'ledger' => [
         /*
@@ -13,7 +15,8 @@ return [
         |
         */
 
-        'implementation' => Altek\Accountant\Models\Ledger::class,
+//        'implementation' => Altek\Accountant\Models\Ledger::class,
+        'implementation' => UserLog::class,
 
         /*
         |--------------------------------------------------------------------------

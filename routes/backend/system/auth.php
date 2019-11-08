@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\System\Auth\Role\RoleController;
 use App\Http\Controllers\Backend\System\Auth\User\UserController;
+use App\Http\Controllers\Backend\System\Auth\User\UserLogController;
 use App\Http\Controllers\Backend\System\Auth\User\UserSocialController;
 use App\Http\Controllers\Backend\System\Auth\User\UserStatusController;
 use App\Http\Controllers\Backend\System\Auth\User\UserSessionController;
@@ -73,6 +74,24 @@ Route::group([
             Route::get('edit', [RoleController::class, 'edit'])->name('role.edit');
             Route::patch('/', [RoleController::class, 'update'])->name('role.update');
             Route::delete('/', [RoleController::class, 'destroy'])->name('role.destroy');
+        });
+    });
+
+    // User Logs Routes
+    Route::group([
+        'prefix' => 'logs',
+        'as' => 'logs.',
+        'namespace' => 'Auth',
+        'middleware' => 'admin',
+    ], function () {
+        // Logs Management
+        Route::group(['namespace' => 'User'], function () {
+            // Security Logs
+            Route::get('user', [UserLogController::class, 'index'])->name('user.index');
+            Route::get('user/{id}/show', [UserLogController::class, 'show'])->name('user.show');
+//            Route::get('user/{id}/restore', [UserLogController::class, 'restore'])->name('user.restore');
+//            Route::delete('user/{id}/destroy', [UserLogController::class, 'destroy'])->name('user.destroy');
+//            Route::delete('user', [UserLogController::class, 'deleteAll'])->name('user.deleteall');
         });
     });
 });
