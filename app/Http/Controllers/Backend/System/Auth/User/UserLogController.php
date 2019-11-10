@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\System\Auth\User;
 use App\Models\System\Auth\UserLog;
 use App\Http\Controllers\Controller;
 
-
 /**
  * Class UserLogController.
  */
@@ -25,14 +24,14 @@ class UserLogController extends Controller
 
 //        dd($ledgers->toArray());
         return view('backend.logs.index')
-            ->withLogs(UserLog::with('user','recordableUser')
+            ->withLogs(UserLog::with('user', 'recordableUser')
             ->orderBy('id', 'desc')
             ->get());
     }
 
     public function show($id)
     {
-        $log = UserLog::with('user','recordableUser')
+        $log = UserLog::with('user', 'recordableUser')
             ->where('id', $id)
             ->first();
 

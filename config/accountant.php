@@ -15,7 +15,7 @@ return [
         |
         */
 
-//        'implementation' => Altek\Accountant\Models\Ledger::class,
+        //        'implementation' => Altek\Accountant\Models\Ledger::class,
         'implementation' => UserLog::class,
 
         /*

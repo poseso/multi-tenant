@@ -3,7 +3,7 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

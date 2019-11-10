@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend\System\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Frontend\System\Auth\RegisterRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Events\Frontend\System\Auth\UserRegistered;
 use App\Repositories\Frontend\System\Auth\UserRepository;

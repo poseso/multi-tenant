@@ -4,7 +4,7 @@ namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Frontend\Contact\SendContact;
+use App\Mail\Frontend\System\Contact\SendContact;
 
 class FillContactFormTest extends TestCase
 {

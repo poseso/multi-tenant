@@ -5,7 +5,6 @@ namespace App\Models\System\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesSystemConnection;
 
-
 class UserLog extends Model implements \Altek\Accountant\Contracts\Ledger
 {
     use UsesSystemConnection,
@@ -15,9 +14,9 @@ class UserLog extends Model implements \Altek\Accountant\Contracts\Ledger
 
     protected $casts = [
         'properties' => 'json',
-        'modified'   => 'json',
-        'pivot'      => 'json',
-        'extra'      => 'json',
+        'modified' => 'json',
+        'pivot' => 'json',
+        'extra' => 'json',
     ];
 
     public function recordableUser()

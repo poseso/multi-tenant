@@ -3,11 +3,11 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Frontend\Auth\UserNeedsPasswordReset;
+use App\Notifications\Frontend\System\Auth\UserNeedsPasswordReset;
 
 class ResetPasswordTest extends TestCase
 {

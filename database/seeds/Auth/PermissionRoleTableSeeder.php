@@ -53,12 +53,15 @@ class PermissionRoleTableSeeder extends Seeder
         // Create Roles
         Role::create([
             'name' => config('access.users.super_admin_role'),
+            'description' => 'Perfil de Acceso completo a todos los módulos del sistema.'
         ]);
         Role::create([
             'name' => config('access.users.admin_role'),
+            'description' => 'Perfil de Administración de los módulos del sistema.'
         ]);
         Role::create([
             'name' => config('access.users.default_role'),
+            'description' => 'Perfil predeterminado de un Usuario.'
         ]);
 
         // Seed the default permissions

@@ -3,9 +3,9 @@
 namespace Tests\Feature\Middleware;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
 use Illuminate\Http\Response;
+use App\Models\System\Auth\Role;
+use App\Models\System\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CheckForReadOnlyModeTest extends TestCase
@@ -50,7 +50,6 @@ class CheckForReadOnlyModeTest extends TestCase
             'email' => 'john@example.com',
             'password' => 'secret',
         ]);
-
         $this->post('/login', [
             'email' => 'john@example.com',
             'password' => 'secret',

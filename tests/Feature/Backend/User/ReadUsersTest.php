@@ -3,7 +3,7 @@
 namespace Tests\Feature\Backend\User;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReadUsersTest extends TestCase

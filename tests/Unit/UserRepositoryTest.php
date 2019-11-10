@@ -3,14 +3,14 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
+use App\Models\System\Auth\Role;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use App\Events\Backend\Auth\User\UserCreated;
-use App\Events\Backend\Auth\User\UserUpdated;
-use App\Repositories\Backend\Auth\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Events\Backend\System\Auth\User\UserCreated;
+use App\Events\Backend\System\Auth\User\UserUpdated;
+use App\Repositories\Backend\System\Auth\UserRepository;
 
 class UserRepositoryTest extends TestCase
 {

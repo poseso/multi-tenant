@@ -3,12 +3,12 @@
 namespace Tests\Feature\Backend\User;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
-use App\Events\Backend\Auth\User\UserUpdated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use App\Events\Backend\System\Auth\User\UserUpdated;
+use App\Notifications\Frontend\System\Auth\UserNeedsConfirmation;
 
 class UpdateUserTest extends TestCase
 {

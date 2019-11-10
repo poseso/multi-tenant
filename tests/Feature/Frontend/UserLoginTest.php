@@ -3,11 +3,11 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Event;
-use App\Events\Frontend\Auth\UserLoggedIn;
-use App\Events\Frontend\Auth\UserLoggedOut;
 use Illuminate\Validation\ValidationException;
+use App\Events\Frontend\System\Auth\UserLoggedIn;
+use App\Events\Frontend\System\Auth\UserLoggedOut;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserLoginTest extends TestCase

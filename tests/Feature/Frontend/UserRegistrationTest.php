@@ -3,17 +3,17 @@
 namespace Tests\Feature\Frontend;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
+use App\Models\System\Auth\Role;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Eloquent\Model;
-use App\Events\Frontend\Auth\UserConfirmed;
-use App\Events\Frontend\Auth\UserRegistered;
 use Illuminate\Support\Facades\Notification;
-use App\Repositories\Backend\Auth\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use App\Events\Frontend\System\Auth\UserConfirmed;
+use App\Events\Frontend\System\Auth\UserRegistered;
+use App\Repositories\Backend\System\Auth\UserRepository;
+use App\Notifications\Frontend\System\Auth\UserNeedsConfirmation;
 
 class UserRegistrationTest extends TestCase
 {
@@ -26,11 +26,15 @@ class UserRegistrationTest extends TestCase
      */
     protected function registerUser($userData = [])
     {
-        factory(Role::class)->create(['name' => 'user']);
+        factory(Role::class)->create([
+            'name' => 'Usuario',
+            'description' => 'Perfil predeterminado de un Usuario.'
+        ]);
 
         return $this->post('/register', array_merge([
             'first_name' => 'John',
             'last_name' => 'Doe',
+            'username' => 'jdoe',
             'email' => 'john@example.com',
             'password' => 'OC4Nzu270N!QBVi%U%qX',
             'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
@@ -50,18 +54,22 @@ class UserRegistrationTest extends TestCase
         $this->get('/register')->assertStatus(404);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function a_user_can_register_an_account()
     {
         $this->registerUser([
             'first_name' => 'John',
             'last_name' => 'Doe',
+            'username' => 'jdoe',
             'email' => 'john@example.com',
             'password' => 'OC4Nzu270N!QBVi%U%qX',
             'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
         ]);
 
         $newUser = resolve(UserRepository::class)->where('email', 'john@example.com')->first();
+        dd($newUser);
         $this->assertSame($newUser->first_name, 'John');
         $this->assertSame($newUser->last_name, 'Doe');
         $this->assertTrue(Hash::check('OC4Nzu270N!QBVi%U%qX', $newUser->password));
@@ -173,12 +181,12 @@ class UserRegistrationTest extends TestCase
     /** @test */
     public function email_must_be_unique()
     {
-        factory(User::class)->create(['email' => 'john@example.com']);
+        $user = factory(User::class)->create();
 
         $response = $this->post('/register', [
             'first_name' => 'John',
             'last_name' => 'Doe',
-            'email' => 'john@example.com',
+            'email' => $user->email,
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);

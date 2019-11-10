@@ -48,7 +48,7 @@ return [
         ],
 
         'system' => [
-            'driver' => 'mysql',
+            'driver' => env('TENANCY_DRIVER', 'mysql'),
             'url' => env('TENANCY_DATABASE_URL'),
             'host' => env('TENANCY_DB_HOST', '127.0.0.1'),
             'port' => env('TENANCY_DB_PORT', '3306'),

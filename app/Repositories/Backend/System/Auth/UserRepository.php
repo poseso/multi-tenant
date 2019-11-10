@@ -136,6 +136,7 @@ class UserRepository extends BaseRepository
             $user = $this->model::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
+                'username' => $data['username'],
                 'email' => $data['email'],
                 'password' => $data['password'],
                 'active' => isset($data['active']) && $data['active'] === '1',
@@ -194,6 +195,7 @@ class UserRepository extends BaseRepository
             if ($user->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
+                'username' => $data['username'],
                 'email' => $data['email'],
             ])) {
                 // Add selected roles/permissions

@@ -3,13 +3,13 @@
 namespace Tests\Backend\User;
 
 use Tests\TestCase;
-use App\Models\Auth\User;
+use App\Models\System\Auth\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
-use App\Events\Backend\Auth\User\UserConfirmed;
-use App\Events\Backend\Auth\User\UserUnconfirmed;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Notifications\Backend\Auth\UserAccountActive;
+use App\Events\Backend\System\Auth\User\UserConfirmed;
+use App\Events\Backend\System\Auth\User\UserUnconfirmed;
+use App\Notifications\Backend\System\Auth\UserAccountActive;
 
 class ConfirmUserTest extends TestCase
 {

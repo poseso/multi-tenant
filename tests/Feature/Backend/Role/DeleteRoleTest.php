@@ -3,10 +3,10 @@
 namespace Tests\Feature\Backend\Role;
 
 use Tests\TestCase;
-use App\Models\Auth\Role;
+use App\Models\System\Auth\Role;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\Role\RoleDeleted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Events\Backend\System\Auth\Role\RoleDeleted;
 
 class DeleteRoleTest extends TestCase
 {

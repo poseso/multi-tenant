@@ -4,7 +4,8 @@ namespace Tests;
 
 use App\Models\System\Auth\Role;
 use App\Models\System\Auth\User;
-use Spatie\Permission\Models\Permission;
+//use Spatie\Permission\Models\Permission;
+use App\Models\System\Auth\Permission;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 /**
@@ -26,7 +27,11 @@ abstract class TestCase extends BaseTestCase
         }
 
         $adminRole = factory(Role::class)->create(['name' => config('access.users.admin_role')]);
-        $adminRole->givePermissionTo(factory(Permission::class)->create(['name' => 'dashboard.read']));
+        $adminRole->givePermissionTo(factory(Permission::class)
+            ->create([
+                'module_id' => '3',
+                'name' => 'dashboard.read'
+            ]));
 
         return $adminRole;
     }
