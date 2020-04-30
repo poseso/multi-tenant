@@ -63,7 +63,7 @@
         "inputmask": "^4.0.8",
         "ion-rangeslider": "^2.3.0",
         "jest": "^24.8.0",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "jquery-form": "^4.2.2",
         "jquery-validation": "1.19.1",
         "jquery.repeater": "^1.2.1",
