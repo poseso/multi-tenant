@@ -3991,10 +3991,10 @@ domexception@^1.0.1:
   dependencies:
     webidl-conversions "^4.0.2"
 
-dompurify@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.1.tgz#02e927c164393213f11a288eea154f105ee33349"
-  integrity sha512-57cdUdCG300XfdO+BTYfgBtcP0G6LuwnQ8BZQ2t9wFDIa+DoQT9iaxKox5aJJYovAA3B4wNIeNlqBfnS/OWvRQ==
+dompurify@^2.0.17:
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.17.tgz#505ffa126a580603df4007e034bdc9b6b738668e"
+  integrity sha512-nNwwJfW55r8akD8MSFz6k75bzyT2y6JEa1O3JrZFBf+Y5R9JXXU4OsRl0B9hKoPgHTw2b7ER5yJ5Md97MMUJPg==
 
 domutils@^1.7.0:
   version "1.7.0"
