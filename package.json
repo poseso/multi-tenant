@@ -96,7 +96,7 @@
         "toastr": "^2.1.4",
         "tooltip.js": "^1.3.2",
         "typeahead.js": "^0.11.1",
-        "underscore": "^1.9.1",
+        "underscore": "^1.12.1",
         "vue": "^2.6.10",
         "vue-jest": "^3.0.4",
         "vue-template-compiler": "^2.6.10",
